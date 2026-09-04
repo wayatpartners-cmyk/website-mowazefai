@@ -1,0 +1,1984 @@
+<title>موظف AI</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600&family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600&family=Marcellus&family=Sora:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+/* ============================================================
+   موظف AI — MOWAZAFAI
+   نمط: Motion-Driven + عمق Aurora، بألوان هوية «صَدَى».
+   الفكرة المنظِّمة: الصفحة كلها مكالمة واحدة تمشي بالوقت،
+   فكل قسم لحظة مختلفة — ولذلك تخطيط مختلف.
+   ============================================================ */
+
+:root{
+  color-scheme: only light;
+
+  /* الأساس — أخضر أنعم وأدفأ */
+  --void:#0E2A26;
+  --petrol-deep:#133A34;
+  --petrol:#1C4942;
+  --petrol-mid:#24544B;
+  --teal:#3A7F73;
+  --teal-lum:#5FC9BC;
+
+  /* النحاسي */
+  --brass:#C9A227;
+  --brass-lite:#F0DFA8;
+  --brass-deep:#8E6E12;
+  --brass-ink:#2C2405;
+  --brass-ink-2:#3A2E07;
+
+  /* الأخضر — للأزرار */
+  --cta:#16A37B;
+  --cta-hi:#22C08F;
+  --cta-ink:#04231C;
+
+  /* الحالات */
+  --success:#2F9E6B;
+  --success-lum:#6FE3AC;
+  --warn:#D9822B;
+  --warn-lum:#F2A860;
+  --warn-ink:#B8641A;   /* للنص على الأرضيات الفاتحة */
+
+  /* الفاتح */
+  --ground:#FAF6F2;
+  --surface:#F6F1EA;
+  --white:#FFFFFF;
+  --line:#E6DED4;
+  --line-soft:#F0EAE2;
+
+  /* الحبر */
+  --ink:#1C4942;
+  --ink-2:#6E6B72;
+  --ink-3:#716E78;
+
+  /* على الداكن */
+  --on-dark:#F2EDE7;
+  --on-dark-2:#BFCFC9;
+  --on-dark-3:#9DB3AD;
+  --rule:rgba(255,255,255,.14);
+  --rule-2:rgba(255,255,255,.08);
+  --glass:rgba(255,255,255,.055);
+
+  /* الخطوط */
+  --ar-display:'Readex Pro','IBM Plex Sans Arabic',system-ui,sans-serif;
+  --ar-body:'IBM Plex Sans Arabic','Readex Pro',system-ui,sans-serif;
+  --en:'Sora','Readex Pro',system-ui,sans-serif;
+  --serif:'Marcellus',Georgia,'Times New Roman',serif;
+  --mono:'DM Mono',ui-monospace,'Courier New',monospace;
+
+  /* المقاسات */
+  --shell:1200px;
+  --pad:clamp(20px,5vw,56px);
+  --r-lg:22px;
+  --r-md:15px;
+  --r-sm:10px;
+
+  /* رموز الحركة — موحّدة عبر الصفحة */
+  --d-fast:.3s;
+  --d-base:.4s;
+  --d-slow:.6s;
+  --e-out:cubic-bezier(.22,.68,.32,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--on-dark);
+  font-family:var(--ar-body);
+  font-weight:500;
+  font-size:17px;
+  line-height:1.85;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,h4{
+  margin:0;
+  font-family:var(--ar-display);
+  font-weight:500;
+  line-height:1.34;
+  text-wrap:balance;
+}
+p{ margin:0; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; }
+svg{ display:block; }
+
+:focus-visible{
+  outline:3px solid var(--brass);
+  outline-offset:3px;
+  border-radius:6px;
+}
+
+/* الحالة المخفية تُطبَّق فقط بعد التأكد أن GSAP اشتغل.
+   بدون ذلك كل المحتوى يظهر طبيعياً. */
+.gsap-ready .anim{ opacity:0; }
+/* العناوين المقسّمة لكلمات: تُخفى ككتلة ثم تُكشف بعد التقسيم */
+.gsap-ready [data-split]{ opacity:0; }
+
+/* ---------------- بنية ---------------- */
+.shell{ width:min(var(--shell),100% - (var(--pad) * 2)); margin-inline:auto; }
+.band{ position:relative; overflow:hidden; }
+.band__in{ position:relative; z-index:3; padding-block:clamp(64px,9vw,124px); }
+
+.on-light{ background:var(--ground); color:var(--ink); }
+.on-paper{ background:var(--white); color:var(--ink); }
+.on-brass{ background:var(--brass); color:var(--brass-ink); }
+.on-petrol{ background:var(--petrol); }
+.on-void{ background:var(--void); }
+
+/* حبيبات — تكسر إحساس الـCSS المسطّح */
+.grain{
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  opacity:.16; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.on-light .grain,.on-paper .grain,.on-brass .grain{ opacity:.07; mix-blend-mode:multiply; }
+
+/* شفق — عمق لوني متحرك بألوان الهوية */
+.aurora{ position:absolute; inset:-20% -10%; z-index:1; pointer-events:none; filter:blur(70px); }
+.aurora i{
+  position:absolute; display:block; border-radius:50%;
+  opacity:.55; will-change:transform;
+}
+.aurora .a1{
+  width:56%; padding-top:56%; top:-6%; right:-4%;
+  background:radial-gradient(circle,var(--teal) 0%,transparent 68%);
+  animation:drift1 15s ease-in-out infinite alternate;
+}
+.aurora .a2{
+  width:48%; padding-top:48%; bottom:-12%; left:-6%;
+  background:radial-gradient(circle,var(--brass) 0%,transparent 66%);
+  opacity:.32;
+  animation:drift2 19s ease-in-out infinite alternate;
+}
+.aurora .a3{
+  width:42%; padding-top:42%; top:34%; left:26%;
+  background:radial-gradient(circle,var(--cta) 0%,transparent 70%);
+  opacity:.28;
+  animation:drift3 13s ease-in-out infinite alternate;
+}
+@keyframes drift1{ to{ transform:translate3d(-7%,9%,0) scale(1.16); } }
+@keyframes drift2{ to{ transform:translate3d(9%,-8%,0) scale(1.2); } }
+@keyframes drift3{ to{ transform:translate3d(5%,7%,0) scale(.86); } }
+
+/* حلقات سونار — النمط التوقيعي */
+.rings{ position:absolute; inset:0; z-index:1; pointer-events:none; }
+.rings--br{
+  background:repeating-radial-gradient(circle at 106% 110%,rgba(201,162,39,.5) 0 1.5px,rgba(201,162,39,0) 1.5px 30px);
+  -webkit-mask-image:radial-gradient(circle at 100% 100%,#000 0%,transparent 58%);
+          mask-image:radial-gradient(circle at 100% 100%,#000 0%,transparent 58%);
+}
+.rings--bl{
+  background:repeating-radial-gradient(circle at -6% 110%,rgba(201,162,39,.45) 0 1.5px,rgba(201,162,39,0) 1.5px 32px);
+  -webkit-mask-image:radial-gradient(circle at 0% 100%,#000 0%,transparent 56%);
+          mask-image:radial-gradient(circle at 0% 100%,#000 0%,transparent 56%);
+}
+.rings--tr-ink{
+  background:repeating-radial-gradient(circle at 105% -8%,rgba(28,73,66,.22) 0 1.5px,rgba(28,73,66,0) 1.5px 26px);
+  -webkit-mask-image:radial-gradient(circle at 100% 0%,#000 0%,transparent 50%);
+          mask-image:radial-gradient(circle at 100% 0%,#000 0%,transparent 50%);
+}
+.rings--tl-brassink{
+  background:repeating-radial-gradient(circle at -5% -8%,rgba(28,73,66,.36) 0 1.5px,rgba(28,73,66,0) 1.5px 26px);
+  -webkit-mask-image:radial-gradient(circle at 0% 0%,#000 0%,transparent 56%);
+          mask-image:radial-gradient(circle at 0% 0%,#000 0%,transparent 56%);
+}
+
+/* ---------------- اللوغو ---------------- */
+.mark{
+  position:relative; flex:none;
+  width:var(--m,58px); height:var(--m,58px);
+  border-radius:50%;
+  background:radial-gradient(120% 120% at 30% 16%,var(--teal) 0%,#245B52 46%,#0E2A26 100%);
+  box-shadow:
+    inset 0 3px 2px rgba(255,255,255,.45),
+    inset 0 -8px 14px rgba(0,0,0,.5),
+    0 18px 30px -14px rgba(0,0,0,.75),
+    0 0 0 1px rgba(255,255,255,.05);
+}
+.mark i{ position:absolute; border-radius:50%; display:block; }
+.mark .r1{ inset:14.5%; border:2px solid rgba(201,162,39,.9); }
+.mark .r2{ inset:29%; border:2px solid rgba(201,162,39,.5); }
+.mark .core{
+  inset:41%;
+  background:linear-gradient(180deg,var(--brass-lite),var(--brass) 55%,var(--brass-deep));
+  box-shadow:inset 0 1px 1px rgba(255,255,255,.75),0 2px 6px rgba(0,0,0,.5);
+}
+.mark .gloss{
+  top:6%; left:13%; width:66%; height:38%; border-radius:50%; border:0;
+  background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,0));
+  filter:blur(3px);
+}
+.mark--sm{ --m:34px; box-shadow:inset 0 2px 1px rgba(255,255,255,.4),0 8px 14px -8px rgba(0,0,0,.8); }
+.mark--sm .r2,.mark--sm .gloss{ display:none; }
+.mark--sm .r1{ inset:19%; }
+.mark--sm .core{ inset:37%; }
+
+.lockup{ display:flex; align-items:center; gap:12px; }
+.lockup__ar{
+  font-family:var(--ar-display); font-weight:600; line-height:1;
+  font-size:var(--lk,21px); color:var(--white);
+}
+.lockup__ar .ai{ color:var(--brass); }
+
+/* ---------------- نص مشترك ---------------- */
+.eyebrow{
+  display:inline-flex; align-items:center; gap:9px;
+  font-family:var(--mono); font-size:11.5px; font-weight:500;
+  letter-spacing:.15em; color:var(--on-dark-3);
+}
+.eyebrow::before{
+  content:""; width:22px; height:1px; background:var(--brass); flex:none;
+}
+.on-light .eyebrow,.on-paper .eyebrow{ color:var(--ink-3); }
+.on-brass .eyebrow{ color:var(--brass-ink-2); }
+.on-brass .eyebrow::before{ background:var(--brass-ink); }
+
+.h2{
+  margin-top:16px;
+  font-size:clamp(28px,4.2vw,48px);
+  font-weight:400;
+  letter-spacing:-.02em;
+  line-height:1.24;
+  color:var(--white);
+}
+.on-light .h2,.on-paper .h2{ color:var(--petrol); }
+.on-brass .h2{ color:var(--brass-ink); }
+
+.lede{
+  margin-top:16px;
+  font-size:clamp(16px,1.5vw,18.5px);
+  line-height:2.05;
+  color:var(--on-dark-2);
+  max-width:56ch;
+}
+.on-light .lede,.on-paper .lede{ color:var(--ink-2); }
+
+.sec-head{ margin-bottom:clamp(34px,4.6vw,56px); }
+
+/* ---------------- أزرار ---------------- */
+.btn{
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--ar-display); font-weight:600; font-size:16px;
+  padding:15px 28px; border-radius:999px;
+  border:1px solid transparent; cursor:pointer;
+  transition:background var(--d-fast) var(--e-out),
+             border-color var(--d-fast) var(--e-out),
+             color var(--d-fast) var(--e-out),
+             box-shadow var(--d-fast) var(--e-out);
+}
+.btn--primary{
+  background:var(--cta); color:var(--cta-ink);
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.32),0 16px 30px -16px rgba(22,163,123,.9);
+}
+.btn--primary:hover{ background:var(--cta-hi); box-shadow:inset 0 2px 0 rgba(255,255,255,.4),0 20px 38px -16px rgba(22,163,123,1); }
+.btn--ghost{ background:rgba(255,255,255,.04); color:var(--on-dark); border-color:var(--rule); }
+.btn--ghost:hover{ border-color:var(--brass); color:var(--white); background:rgba(255,255,255,.08); }
+.btn--ink{ background:var(--petrol); color:var(--on-dark); }
+.btn--ink:hover{ background:var(--petrol-mid); }
+.btn:active{ transform:scale(.97); }
+
+/* ---------------- الهيدر ---------------- */
+.nav{
+  position:sticky; top:0; z-index:80;
+  color:var(--on-dark);
+  background:rgba(14,42,38,.78);
+  backdrop-filter:blur(16px) saturate(1.3);
+  -webkit-backdrop-filter:blur(16px) saturate(1.3);
+  border-bottom:1px solid var(--rule-2);
+}
+.nav__row{ display:flex; align-items:center; gap:20px; padding-block:13px; }
+/* هدف لمس ٤٤px للوغو في الهيدر */
+.nav__row .lockup{ padding-block:5px; }
+.nav__links{ display:flex; gap:24px; margin-inline-start:auto; }
+.nav__links a{
+  position:relative; font-size:15px; color:var(--on-dark-2); padding-block:5px;
+  transition:color var(--d-fast) var(--e-out);
+}
+.nav__links a::after{
+  content:""; position:absolute; inset-inline:0; bottom:0; height:2px;
+  background:var(--brass); transform:scaleX(0); transform-origin:right;
+  transition:transform var(--d-fast) var(--e-out);
+}
+.nav__links a:hover{ color:var(--white); }
+.nav__links a:hover::after{ transform:scaleX(1); }
+.nav__cta{ padding:11px 22px; font-size:15px; }
+
+/* شريط تقدّم القراءة */
+.progress{
+  position:absolute; inset-inline:0; bottom:-1px; height:2px;
+  background:linear-gradient(90deg,var(--brass),var(--teal-lum));
+  transform:scaleX(0); transform-origin:right;
+}
+
+/* ============================================================
+   ١ · الهيرو — الرنّة
+   ============================================================ */
+.hero{ min-height:100svh; display:flex; align-items:center; }
+.hero__in{
+  position:relative; z-index:3;
+  padding-block:clamp(56px,10vh,110px);
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:26px;
+}
+.hero__vignette{
+  position:absolute; inset:0; z-index:2; pointer-events:none;
+  background:radial-gradient(ellipse 78% 62% at 50% 44%,transparent 0%,rgba(14,42,38,.72) 100%);
+}
+
+.hero__badge{
+  display:inline-flex; align-items:center; gap:10px;
+  padding:8px 17px 8px 13px; border-radius:999px;
+  background:var(--glass); border:1px solid var(--rule);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  font-family:var(--mono); font-size:11.5px; letter-spacing:.13em; color:var(--on-dark-2);
+}
+.hero__dot{
+  width:7px; height:7px; border-radius:50%; background:var(--cta); flex:none;
+  box-shadow:0 0 0 0 rgba(22,163,123,.75);
+  animation:beat 2.4s ease-out infinite;
+}
+@keyframes beat{
+  0%{ box-shadow:0 0 0 0 rgba(22,163,123,.7); }
+  70%{ box-shadow:0 0 0 10px rgba(22,163,123,0); }
+  100%{ box-shadow:0 0 0 0 rgba(22,163,123,0); }
+}
+
+.hero__markwrap{ position:relative; display:grid; place-items:center; padding:14px; }
+.hero__mark{ --m:96px; position:relative; z-index:2; cursor:pointer; }
+.echo{
+  position:absolute; top:50%; left:50%;
+  width:96px; height:96px; margin:-48px 0 0 -48px;
+  border-radius:50%; border:1.5px solid rgba(201,162,39,.5);
+  opacity:0; z-index:1;
+  animation:echo 4s cubic-bezier(.2,.7,.3,1) infinite;
+}
+.echo:nth-of-type(2){ animation-delay:1.33s; }
+.echo:nth-of-type(3){ animation-delay:2.66s; }
+@keyframes echo{
+  0%{ transform:scale(.9); opacity:0; }
+  14%{ opacity:.7; }
+  100%{ transform:scale(3.6); opacity:0; }
+}
+
+.hero h1{
+  font-size:clamp(38px,7.6vw,92px);
+  font-weight:400;
+  line-height:1.18;
+  letter-spacing:-.02em;
+  color:var(--white);
+  max-width:19ch;
+}
+/* لون صلب لا تدرّج: تقسيم الكلمات ينقل النص لعناصر أبناء،
+   وقصّ الخلفية على النص (background-clip) ما ينتقل معها فيختفي النص. */
+.hero h1 .hl{ color:var(--brass); white-space:nowrap; }
+.hero .lede{ max-width:60ch; text-align:center; }
+
+/* الموجة الصوتية + الترجمة */
+.wave{
+  display:flex; align-items:center; justify-content:center; gap:3px;
+  height:56px; width:min(440px,88vw);
+}
+.wave b{
+  display:block; flex:1; max-width:5px; height:100%;
+  border-radius:3px;
+  background:linear-gradient(180deg,var(--teal-lum),var(--cta));
+  transform:scaleY(.12); transform-origin:center;
+  will-change:transform;
+}
+.cap{
+  min-height:2.6em; max-width:50ch;
+  font-family:var(--ar-display); font-size:clamp(15px,1.7vw,19px);
+  line-height:1.7; color:var(--on-dark);
+}
+.cap--idle{ color:var(--on-dark-3); font-family:var(--ar-body); font-size:15px; }
+
+.hero__actions{ display:flex; flex-wrap:wrap; gap:13px; justify-content:center; }
+
+.hero__scroll{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  margin-top:6px;
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; color:var(--on-dark-3);
+}
+.hero__scroll span{
+  display:block; width:1px; height:34px;
+  background:linear-gradient(180deg,var(--brass),transparent);
+}
+
+/* ============================================================
+   ٢ · شريط الأرقام
+   ============================================================ */
+.stats{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--rule-2); border-bottom:1px solid var(--rule-2);
+}
+.stat{
+  padding:30px clamp(14px,2.4vw,30px);
+  border-inline-start:1px solid var(--rule-2);
+  display:flex; flex-direction:column; gap:5px;
+}
+.stat:first-child{ border-inline-start:0; }
+.stat__n{
+  font-family:var(--en); font-weight:800; direction:ltr;
+  font-size:clamp(30px,4vw,44px); line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.stat:nth-child(1) .stat__n{ color:var(--teal-lum); }
+.stat:nth-child(2) .stat__n{ color:var(--brass); }
+.stat:nth-child(3) .stat__n{ color:var(--white); }
+.stat:nth-child(4) .stat__n{ color:var(--success-lum); }
+.stat__t{ font-size:14.5px; line-height:1.7; color:var(--on-dark-2); }
+
+/* ============================================================
+   ٣ · المشكلة — القسم المثبّت
+   ============================================================ */
+.miss{ background:var(--petrol-deep); }
+.miss__stage{
+  min-height:100svh; display:flex; align-items:center;
+  position:relative; z-index:3;
+}
+.miss__grid{
+  width:100%;
+  display:grid; grid-template-columns:.92fr 1.08fr;
+  gap:clamp(28px,4.4vw,60px); align-items:center;
+}
+.miss__count{
+  font-family:var(--en); font-weight:800; direction:ltr;
+  font-size:clamp(76px,13vw,168px); line-height:.86;
+  color:var(--warn); font-variant-numeric:tabular-nums;
+  letter-spacing:-.04em;
+}
+.miss.is-saved .miss__count{ color:var(--success-lum); }
+.miss__count,.miss__label{ transition:color var(--d-slow) var(--e-out); }
+.miss__label{
+  margin-top:10px; font-family:var(--ar-display); font-weight:600;
+  font-size:clamp(19px,2.3vw,26px); line-height:1.45; color:var(--white);
+}
+.miss__note{ margin-top:14px; font-size:16px; line-height:1.85; color:var(--on-dark-2); max-width:38ch; }
+
+.calls{ display:flex; flex-direction:column; gap:10px; }
+.call{
+  display:flex; align-items:center; gap:14px;
+  padding:15px 18px; border-radius:var(--r-md);
+  background:var(--glass); border:1px solid var(--rule);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
+.call__t{
+  font-family:var(--mono); font-size:13px; direction:ltr;
+  color:var(--on-dark-3); font-variant-numeric:tabular-nums;
+}
+.call__num{ font-size:15px; color:var(--on-dark-2); direction:ltr; }
+.call__tag{
+  margin-inline-start:auto; flex:none;
+  font-family:var(--ar-display); font-weight:600; font-size:13px;
+  padding:5px 13px; border-radius:999px;
+  background:rgba(217,130,43,.16); color:var(--warn-lum);
+  border:1px solid rgba(217,130,43,.4);
+}
+.miss.is-saved .call__tag{
+  background:rgba(47,158,107,.18); color:var(--success-lum);
+  border-color:rgba(47,158,107,.45);
+}
+.call__tag{ transition:background var(--d-base) var(--e-out),color var(--d-base) var(--e-out),border-color var(--d-base) var(--e-out); }
+
+/* ============================================================
+   ٤ · كيف يشتغل — خط زمني
+   ============================================================ */
+.flow{ position:relative; margin-top:14px; }
+.flow__line{
+  position:absolute; inset-inline:6%; top:34px; height:2px;
+  overflow:hidden;
+}
+.flow__line::before{
+  content:""; position:absolute; inset:0;
+  background:repeating-linear-gradient(90deg,var(--rule) 0 6px,transparent 6px 12px);
+}
+.flow__line i{
+  position:absolute; inset:0; display:block; transform-origin:right;
+  background:linear-gradient(90deg,var(--teal-lum),var(--brass));
+  transform:scaleX(0);
+}
+.flow__steps{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(16px,2.4vw,28px);
+}
+.step{ display:flex; flex-direction:column; gap:13px; }
+.step__node{
+  width:68px; height:68px; border-radius:50%; flex:none;
+  display:grid; place-items:center;
+  background:radial-gradient(120% 120% at 30% 18%,#12554F,var(--petrol-deep));
+  border:1px solid var(--rule);
+  box-shadow:0 14px 26px -14px rgba(0,0,0,.9);
+  transition:border-color var(--d-base) var(--e-out),box-shadow var(--d-base) var(--e-out);
+}
+.step.is-on .step__node{
+  border-color:rgba(201,162,39,.75);
+  box-shadow:0 0 0 5px rgba(201,162,39,.1),0 14px 26px -14px rgba(0,0,0,.9);
+}
+.step__node svg{ width:28px; height:28px; stroke:var(--brass); }
+.step__n{ font-family:var(--mono); font-size:12px; letter-spacing:.14em; color:var(--brass); direction:ltr; }
+.step h3{ font-size:20px; color:var(--white); }
+.step p{ font-size:15.5px; line-height:1.8; color:var(--on-dark-2); }
+.step__meta{
+  margin-top:auto; padding-top:12px; border-top:1px solid var(--rule-2);
+  font-family:var(--mono); font-size:11px; color:var(--on-dark-3); letter-spacing:.05em;
+}
+
+/* ============================================================
+   ٥ · القدرات — Bento
+   ============================================================ */
+.bento{
+  display:grid; grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+.cell{
+  position:relative; overflow:hidden;
+  background:var(--ground); border:1px solid var(--line);
+  border-radius:var(--r-md); padding:26px 24px;
+  display:flex; flex-direction:column; gap:11px;
+  transition:border-color var(--d-fast) var(--e-out),box-shadow var(--d-fast) var(--e-out),transform var(--d-fast) var(--e-out);
+}
+.cell:hover{
+  border-color:#BFD2CB;
+  box-shadow:0 26px 44px -30px rgba(28,73,66,.65);
+  transform:translateY(-4px);
+}
+.cell--w{ grid-column:span 2; }
+
+/* القواعد الأساسية أولاً — ثم المتغيّرات بعدها.
+   القاعدتان .cell p و .cell--dark p لهما نفس الأولوية،
+   فترتيب المصدر هو اللي يحسم؛ عكسه يعطي نصاً داكناً على داكن. */
+.cell__ico{
+  width:46px; height:46px; border-radius:13px; flex:none;
+  display:grid; place-items:center;
+  background:var(--white); border:1px solid var(--line);
+}
+.cell__ico svg{ width:24px; height:24px; stroke:var(--brass-deep); }
+.cell h3{ font-size:18.5px; color:var(--petrol); margin-top:3px; }
+.cell p{ font-size:15px; line-height:1.8; color:var(--ink-2); }
+
+.cell--dark{
+  background:linear-gradient(155deg,var(--petrol-mid),var(--petrol-deep));
+  border-color:transparent; color:var(--on-dark);
+}
+.cell--dark h3{ color:var(--white); }
+.cell--dark p{ color:var(--on-dark-2); }
+.cell--dark .cell__ico{ border-color:var(--rule); background:rgba(255,255,255,.06); }
+.cell--dark .cell__ico svg{ stroke:var(--brass); }
+
+/* ============================================================
+   ٦ · المكالمة واللوحة
+   ============================================================ */
+.talk{
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:clamp(26px,3.6vw,44px); align-items:start;
+}
+.talk__sticky{ position:sticky; top:104px; }
+
+.turns{ display:flex; flex-direction:column; gap:14px; }
+.turn{ display:flex; flex-direction:column; gap:7px; }
+.turn__who{ font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--on-dark-3); }
+.turn--ai .turn__who{ color:var(--brass); }
+.turn__say{ padding:15px 18px; border-radius:var(--r-md); font-size:16px; line-height:1.78; }
+.turn--p .turn__say{
+  background:rgba(255,255,255,.07); color:var(--on-dark);
+  border-inline-start:2px solid var(--rule);
+}
+.turn--ai .turn__say{
+  background:linear-gradient(140deg,rgba(22,163,123,.22),rgba(22,163,123,.1));
+  color:#D6F5E7; border-inline-start:2px solid var(--cta);
+  font-family:var(--ar-display);
+}
+
+.dash{
+  border-radius:var(--r-md); overflow:hidden;
+  border:1px solid var(--rule);
+  box-shadow:0 34px 60px -36px rgba(0,0,0,.95);
+}
+.dash__bar{ display:flex; align-items:center; gap:9px; padding:13px 16px; background:var(--petrol); }
+.dash__bar em{
+  margin-inline-start:auto; font-style:normal;
+  font-family:var(--mono); font-size:10.5px; color:var(--on-dark-3);
+}
+.dash__kpis{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; padding:16px; background:var(--ground); }
+.kpi{ background:var(--white); border:1px solid var(--line); border-radius:var(--r-sm); padding:14px; }
+.kpi b{
+  display:block; font-family:var(--en); font-weight:800; font-size:25px; line-height:1;
+  direction:ltr; font-variant-numeric:tabular-nums;
+}
+.kpi--a b{ color:var(--petrol); }
+.kpi--b b{ color:var(--success); }
+.kpi--c b{ color:var(--warn-ink); }
+.kpi span{ display:block; font-size:12.5px; color:var(--ink-2); margin-top:6px; line-height:1.6; }
+.dash__rows{ padding:0 16px 16px; background:var(--ground); display:flex; flex-direction:column; gap:8px; }
+.row{
+  display:flex; align-items:center; gap:11px;
+  background:var(--white); border:1px solid var(--line);
+  border-radius:var(--r-sm); padding:11px 14px; font-size:13.5px; color:var(--ink-2);
+}
+.row i{ width:3px; align-self:stretch; border-radius:3px; flex:none; }
+.row--ok i{ background:var(--success); }
+.row--flag i{ background:var(--warn); }
+.row em{
+  margin-inline-start:auto; font-style:normal;
+  font-family:var(--mono); font-size:12px; color:var(--ink-3);
+  direction:ltr; font-variant-numeric:tabular-nums;
+}
+.sms{ margin-top:15px; padding:16px 18px; border:1px solid var(--rule); border-radius:var(--r-md); background:var(--glass); }
+.sms b{ display:block; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--brass); margin-bottom:8px; font-weight:500; }
+.sms p{ font-size:15px; line-height:1.8; color:var(--on-dark-2); }
+
+/* ============================================================
+   ٧ · الدليل
+   ============================================================ */
+.proof{ display:grid; grid-template-columns:1.3fr .7fr; gap:clamp(28px,4vw,52px); align-items:center; }
+.quote{
+  font-family:var(--ar-display); font-weight:600;
+  font-size:clamp(28px,4.6vw,56px); line-height:1.34;
+  letter-spacing:-.02em; color:var(--brass-ink);
+}
+.quote i{ display:inline-block; font-style:normal; }
+.quote__by{ margin-top:20px; font-size:16px; color:var(--brass-ink-2); }
+.bigstat{
+  background:rgba(28,73,66,.1); border:1px solid rgba(28,73,66,.22);
+  border-radius:var(--r-lg); padding:30px;
+}
+.bigstat b{
+  display:block; font-family:var(--en); font-weight:800; direction:ltr;
+  font-size:clamp(50px,7vw,86px); line-height:1; color:var(--petrol);
+  font-variant-numeric:tabular-nums; letter-spacing:-.03em;
+}
+.bigstat strong{ display:block; margin-top:14px; font-family:var(--ar-display); font-weight:600; font-size:19px; line-height:1.55; color:var(--brass-ink); }
+.bigstat span{ display:block; margin-top:14px; font-size:13.5px; color:var(--brass-ink-2); }
+
+/* ============================================================
+   ٨ · الأسئلة
+   ============================================================ */
+.faq{ display:grid; grid-template-columns:.72fr 1.28fr; gap:clamp(28px,4vw,56px); align-items:start; }
+.faq__head{ position:sticky; top:104px; }
+.faq__list{ display:flex; flex-direction:column; gap:11px; }
+.qa{ background:var(--white); border:1px solid var(--line); border-radius:var(--r-md); overflow:hidden; }
+.qa summary{
+  display:flex; align-items:center; gap:14px;
+  padding:20px 22px; cursor:pointer; list-style:none;
+  font-family:var(--ar-display); font-weight:600; font-size:17.5px; color:var(--petrol);
+}
+.qa summary::-webkit-details-marker{ display:none; }
+.qa__sign{
+  margin-inline-start:auto; flex:none;
+  width:28px; height:28px; border-radius:50%;
+  border:1px solid var(--line); color:var(--ink-3);
+  display:grid; place-items:center; font-size:17px; line-height:1;
+  transition:transform var(--d-fast) var(--e-out),background var(--d-fast) var(--e-out),
+             color var(--d-fast) var(--e-out),border-color var(--d-fast) var(--e-out);
+}
+.qa[open] .qa__sign{ transform:rotate(45deg); background:var(--petrol); color:var(--on-dark); border-color:var(--petrol); }
+.qa__body{ overflow:hidden; }
+.qa__body p{ padding:0 22px 22px; font-size:16px; line-height:1.9; color:var(--ink-2); max-width:70ch; }
+
+/* ============================================================
+   ٩ · الدعوة
+   ============================================================ */
+.final{ display:grid; grid-template-columns:1fr .9fr; gap:clamp(32px,4.6vw,60px); align-items:center; }
+.form{
+  background:var(--glass); border:1px solid var(--rule);
+  border-radius:var(--r-lg); padding:clamp(24px,3.2vw,34px);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  box-shadow:0 40px 70px -40px rgba(0,0,0,.95);
+}
+.field{ display:flex; flex-direction:column; gap:8px; margin-bottom:16px; }
+.field label{ font-family:var(--mono); font-size:11.5px; letter-spacing:.09em; color:var(--on-dark-3); }
+.field input,.field select{
+  font-family:var(--ar-body); font-size:16px; font-weight:500; color:var(--white);
+  background:rgba(14,42,38,.6); border:1px solid var(--rule);
+  border-radius:var(--r-sm); padding:14px 16px; min-height:48px;
+  transition:border-color var(--d-fast) var(--e-out),background var(--d-fast) var(--e-out);
+}
+.field input::placeholder{ color:#6E8D89; }
+/* لا نلغي حلقة التركيز — تغيير الحد وحده مؤشر ضعيف لمستخدم لوحة المفاتيح.
+   حلقة :focus-visible العامة تبقى شغّالة فوق هذا. */
+.field input:focus,.field select:focus{ border-color:var(--brass); background:rgba(14,42,38,.85); }
+.field select option{ background:var(--petrol-deep); color:var(--on-dark); }
+.form .btn{ width:100%; margin-top:6px; }
+.form__note{ margin-top:16px; font-size:13.5px; line-height:1.8; color:var(--on-dark-3); text-align:center; }
+.form__done{
+  display:none; align-items:center; gap:13px;
+  padding:19px; border-radius:var(--r-md);
+  background:rgba(47,158,107,.16); border:1px solid rgba(47,158,107,.45);
+  font-size:15.5px; line-height:1.75; color:#CDEFDF;
+}
+.form__done b{ font-family:var(--ar-display); font-weight:600; color:var(--success-lum); }
+.form.is-sent .form__fields{ display:none; }
+.form.is-sent .form__done{ display:flex; }
+
+/* مصيدة سبام: مخفية عن العين وقارئ الشاشة، لكن الروبوت يعبّيها */
+.form__hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+
+.form__err{
+  display:flex; flex-wrap:wrap; gap:4px;
+  margin-top:14px; padding:14px 16px; border-radius:var(--r-md);
+  background:rgba(217,130,43,.14); border:1px solid rgba(217,130,43,.45);
+  font-size:14.5px; line-height:1.75; color:#F7D8B6;
+}
+.form__err a{ color:var(--brass); text-decoration:underline; }
+.form__err[hidden]{ display:none; }
+.btn[aria-busy="true"]{ opacity:.7; cursor:progress; }
+
+.tick{
+  width:22px; height:22px; border-radius:50%; flex:none;
+  background:var(--success); color:var(--cta-ink);
+  display:grid; place-items:center; font-size:12px; font-weight:700;
+}
+.points{ display:flex; flex-direction:column; gap:14px; margin-top:30px; }
+.point{ display:flex; gap:13px; align-items:flex-start; font-size:16px; line-height:1.8; color:var(--on-dark-2); }
+.point i{
+  flex:none; width:23px; height:23px; margin-top:4px; border-radius:50%;
+  background:rgba(201,162,39,.15); border:1px solid rgba(201,162,39,.5);
+  color:var(--brass); display:grid; place-items:center; font-size:11px; font-style:normal;
+}
+
+/* ============================================================
+   ١٠ · الفوتر
+   ============================================================ */
+.foot__top{ display:flex; flex-wrap:wrap; gap:28px; align-items:flex-start; padding-bottom:28px; border-bottom:1px solid var(--rule-2); }
+.foot__tag{ font-family:var(--ar-display); font-size:20px; color:var(--on-dark); margin-top:16px; }
+.foot__nav{ display:flex; flex-wrap:wrap; gap:12px 26px; margin-inline-start:auto; }
+.foot__nav a{ font-size:15px; color:var(--on-dark-2); transition:color var(--d-fast) var(--e-out); }
+.foot__nav a:hover{ color:var(--brass); }
+/* Marcellus هنا: سيريف كلاسيكي بتباعد واسع — التوقيع الأنيق للصفحة.
+   الأرقام تبقى Sora لأن لها أرقاماً جدولية تمنع اهتزاز العدّادات. */
+.foot__word{
+  font-family:var(--serif); font-weight:400; direction:ltr;
+  font-size:clamp(38px,10vw,132px); line-height:1; letter-spacing:.06em;
+  color:transparent; -webkit-text-stroke:1px rgba(157,179,173,.34);
+  margin-block:38px 22px; user-select:none;
+}
+.foot__bot{
+  display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between;
+  padding-top:22px; border-top:1px solid var(--rule-2);
+  font-family:var(--mono); font-size:11.5px; color:var(--on-dark-3); letter-spacing:.07em;
+}
+
+/* ---------------- زر واتساب العائم ---------------- */
+/* رابط حقيقي في HTML: يشتغل بلا جافاسكربت إطلاقاً */
+.wa{
+  position:fixed; z-index:90;
+  inset-inline-start:22px; bottom:22px;
+  display:flex; align-items:center; gap:11px;
+  padding:13px 20px 13px 15px;
+  border-radius:999px;
+  background:var(--cta); color:var(--cta-ink);
+  font-family:var(--ar-display); font-weight:500; font-size:15.5px;
+  box-shadow:inset 0 2px 0 rgba(255,255,255,.3), 0 14px 30px -12px rgba(14,42,38,.85);
+  transition:transform var(--d-fast) var(--e-out), background var(--d-fast) var(--e-out);
+}
+.wa:hover{ background:var(--cta-hi); transform:translateY(-3px); }
+.wa svg{ width:24px; height:24px; flex:none; }
+.wa__txt{ white-space:nowrap; }
+
+@media (max-width:640px){
+  .wa{ padding:14px; inset-inline-start:16px; bottom:16px; }
+  .wa__txt{ display:none; }   /* أيقونة فقط — لا تحجب المحتوى */
+}
+
+/* ---------------- استجابة ---------------- */
+@media (max-width:1024px){
+  .nav__links{ display:none; }
+  .miss__grid,.talk,.proof,.faq,.final{ grid-template-columns:1fr; }
+  .talk__sticky,.faq__head{ position:static; }
+  .flow__steps{ grid-template-columns:repeat(2,1fr); row-gap:34px; }
+  .flow__line{ display:none; }
+  .bento{ grid-template-columns:repeat(2,1fr); }
+  .cell--w{ grid-column:span 2; }
+}
+@media (max-width:768px){
+  .miss__stage{ min-height:auto; padding-block:64px; }
+}
+@media (max-width:640px){
+  body{ font-size:16px; }
+  .stats{ grid-template-columns:repeat(2,1fr); }
+  .stat:nth-child(3){ border-inline-start:0; }
+  .stat:nth-child(n+3){ border-top:1px solid var(--rule-2); }
+  .flow__steps,.bento{ grid-template-columns:1fr; }
+  .cell--w{ grid-column:span 1; }
+  .dash__kpis{ grid-template-columns:1fr; }
+  .btn{ width:100%; }
+  .hero__actions{ flex-direction:column; align-items:stretch; width:100%; max-width:340px; }
+  .nav__cta{ width:auto; margin-inline-start:auto; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .anim{ opacity:1 !important; transform:none !important; }
+  .wave b{ transform:scaleY(.4); }
+  .flow__line i{ transform:scaleX(1); }
+}
+</style>
+
+<!-- GSAP: يُحمَّل بشكل متزامن قبل رسم المحتوى.
+     إذا فشل التحميل، لا تُضاف .gsap-ready ويظهر كل المحتوى طبيعياً. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<!-- تمرير ناعم. اختياري تماماً: لو ما تحمّل، الصفحة تشتغل بتمرير عادي. -->
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+  window.MWZ_READY = !!(window.gsap && window.ScrollTrigger) &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (window.MWZ_READY) document.documentElement.classList.add("gsap-ready");
+</script>
+
+<!-- طقم الأيقونات -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <g id="i-base" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></g>
+  </defs>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m9 15 2 2 4-4"/>
+  </symbol>
+  <symbol id="i-cancel" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="m10 14 4 4M14 14l-4 4"/>
+  </symbol>
+  <symbol id="i-ask" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-5.5A8 8 0 1 1 21 12Z"/><path d="M10 9.5a2.2 2.2 0 1 1 3 2c-.7.4-1 .9-1 1.7"/><path d="M12 16.4h.01"/>
+  </symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="9"/><path d="M12 7v5.3l3.4 2"/>
+  </symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-5.5A8 8 0 1 1 21 12Z"/><path d="M12 8.4v3.8M12 15.6h.01"/>
+  </symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 9.5a6.5 6.5 0 0 1-6.5 6.5H8l-3.5 2.6.9-4.4A6.5 6.5 0 1 1 18 9.5Z"/><path d="M18.6 20.8 21 22.5l-.6-3a5 5 0 0 0 1.4-3.4"/>
+  </symbol>
+  <symbol id="i-sync" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/>
+    <path d="M9 16.2a3 3 0 0 1 5-2.2M15 15.8a3 3 0 0 1-5 2.2"/><path d="M14 12.6h1.6v1.6M10 19.4H8.4v-1.6"/>
+  </symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 20h16"/><rect x="5.5" y="12" width="3.4" height="5.6" rx="1"/><rect x="10.3" y="8" width="3.4" height="9.6" rx="1"/><rect x="15.1" y="4.6" width="3.4" height="13" rx="1"/>
+  </symbol>
+  <symbol id="i-ring" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 4.5a4 4 0 0 0-4 4v3.2L6.5 15h11L16 11.7V8.5a4 4 0 0 0-4-4Z"/><path d="M10.2 18a1.9 1.9 0 0 0 3.6 0"/><path d="M3.6 8.2a7 7 0 0 1 1.9-3.4M20.4 8.2a7 7 0 0 0-1.9-3.4"/>
+  </symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 12h1.6M7 8.2v7.6M10.4 5.4v13.2M13.8 8.8v6.4M17.2 6.6v10.8M20.6 10.4v3.2"/>
+  </symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="12" cy="15" r="1.4"/>
+  </symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3.5a5.4 5.4 0 0 0-5.4 5.4c0 4-1.6 5.6-1.6 5.6h14s-1.6-1.6-1.6-5.6A5.4 5.4 0 0 0 12 3.5Z"/><path d="M10.2 17.6a1.9 1.9 0 0 0 3.6 0"/>
+  </symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M12.04 2.02c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.48 1.34 5L2 22.06l5.2-1.36a9.93 9.93 0 0 0 4.84 1.23h.01c5.49 0 9.95-4.46 9.95-9.95a9.9 9.9 0 0 0-2.91-7.04 9.88 9.88 0 0 0-7.05-2.92Zm0 18.2h-.01a8.26 8.26 0 0 1-4.21-1.15l-.3-.18-3.13.82.83-3.05-.2-.31a8.24 8.24 0 0 1-1.27-4.4 8.28 8.28 0 0 1 14.13-5.84 8.2 8.2 0 0 1 2.42 5.85c0 4.56-3.71 8.26-8.26 8.26Z"/>
+    <path fill="currentColor" d="M16.57 14.33c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.19-.54.06-.25-.12-1.05-.38-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.09-.16.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.08s.9 2.41 1.02 2.58c.13.16 1.76 2.7 4.28 3.78.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.19.2-.58.2-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/>
+  </symbol>
+</svg>
+
+<!-- ============================ الهيدر ============================ -->
+<header class="nav">
+  <div class="shell nav__row">
+    <a class="lockup" href="#top" aria-label="موظف AI — الصفحة الرئيسية">
+      <span class="mark mark--sm" aria-hidden="true"><i class="r1"></i><i class="core"></i></span>
+      <span class="lockup__ar">موظف <span class="ai">AI</span></span>
+    </a>
+    <nav class="nav__links" aria-label="أقسام الصفحة">
+      <a href="#miss">المشكلة</a>
+      <a href="#how">كيف يشتغل</a>
+      <a href="#caps">القدرات</a>
+      <a href="#talk">المكالمة</a>
+      <a href="#faq">الأسئلة</a>
+    </nav>
+    <a class="btn btn--primary nav__cta" href="#try">اطلب تجربة</a>
+  </div>
+  <span class="progress" aria-hidden="true"></span>
+</header>
+
+<!-- ============================ ١ · الهيرو ============================ -->
+<section class="band hero" id="top">
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <div class="rings rings--br" aria-hidden="true"></div>
+  <div class="hero__vignette" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell hero__in">
+    <span class="hero__badge anim" data-hero="1">
+      <span class="hero__dot" aria-hidden="true"></span>
+      موظف الاستقبال الصوتي · عيادات الرياض
+    </span>
+
+    <div class="hero__markwrap anim" data-hero="2">
+      <span class="echo" aria-hidden="true"></span>
+      <span class="echo" aria-hidden="true"></span>
+      <span class="echo" aria-hidden="true"></span>
+      <span class="mark hero__mark" id="heroMark" aria-hidden="true">
+        <i class="r1"></i><i class="r2"></i><i class="core"></i><i class="gloss"></i>
+      </span>
+    </div>
+
+    <h1 data-split>موظفك اللي يرد <span class="hl">أول رنّة</span>، وما يفوّت موعد.</h1>
+
+    <p class="lede anim" data-hero="3">
+      مكالمة المريض ما تروح في الفراغ. يرد بلهجة سعودية طبيعية، يجاوب عن الخدمات
+      والأسعار والأطباء، يحجز في تقويم عيادتك على طول، ويذكّر المريض قبل موعده.
+    </p>
+
+    <div class="wave anim" id="wave" data-hero="4" aria-hidden="true"></div>
+    <p class="cap cap--idle" id="cap" aria-live="polite">اضغط «شغّل المكالمة» تسمع مثال حقيقي.</p>
+
+    <div class="hero__actions anim" data-hero="5">
+      <button class="btn btn--primary" id="playBtn" type="button">شغّل المكالمة</button>
+      <a class="btn btn--ghost" href="#try">اطلب مكالمة تجريبية</a>
+    </div>
+
+    <div class="hero__scroll anim" data-hero="6" aria-hidden="true">
+      <span></span>
+      مرّر
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٢ · الأرقام ============================ -->
+<section class="band on-void">
+  <div class="shell">
+    <div class="stats">
+      <div class="stat anim"><span class="stat__n" data-count="24" data-suffix="/7">0</span><span class="stat__t">يرد بدون دوام ولا انقطاع، وفي الإجازات.</span></div>
+      <div class="stat anim"><span class="stat__n">SA</span><span class="stat__t">لهجة سعودية طبيعية — مو ترجمة آلية.</span></div>
+      <div class="stat anim"><span class="stat__n" data-count="0">0</span><span class="stat__t">مكالمات فائتة، صفر موعد ضايع.</span></div>
+      <div class="stat anim"><span class="stat__n" data-count="38" data-prefix="+" data-suffix="%">0</span><span class="stat__t">مواعيد مؤكدة بعد أول شهر تشغيل.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٣ · المشكلة (مثبّت) ============================ -->
+<section class="band miss" id="miss">
+  <div class="rings rings--bl" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="miss__stage" id="missStage">
+    <div class="shell">
+      <div class="miss__grid">
+        <div>
+          <span class="eyebrow">المشكلة</span>
+          <!-- القيمة الثابتة هي الصحيحة بلا حركة (جوال / بلا GSAP)؛
+               على الديسكتوب تُصفَّر ثم تعدّ مع التمرير. -->
+          <div class="miss__count" id="missCount">4</div>
+          <div class="miss__label" id="missLabel">مكالمات ضاعت الليلة.</div>
+          <p class="miss__note" id="missNote">
+            كل مكالمة ما تُرد عليها هي مريض راح لعيادة ثانية. والمشكلة مو في الموظف —
+            الرنّة تجي في وقت ما فيه أحد فاضي لها.
+          </p>
+        </div>
+
+        <div class="calls" id="callList">
+          <div class="call"><span class="call__t">21:42</span><span class="call__num">05X XXX XX41</span><span class="call__tag">فائتة</span></div>
+          <div class="call"><span class="call__t">22:10</span><span class="call__num">05X XXX XX88</span><span class="call__tag">فائتة</span></div>
+          <div class="call"><span class="call__t">23:05</span><span class="call__num">05X XXX XX17</span><span class="call__tag">فائتة</span></div>
+          <div class="call"><span class="call__t">01:19</span><span class="call__num">05X XXX XX56</span><span class="call__tag">فائتة</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٤ · كيف يشتغل ============================ -->
+<section class="band on-petrol" id="how">
+  <div class="rings rings--br" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell band__in">
+    <div class="sec-head anim">
+      <span class="eyebrow">كيف يشتغل</span>
+      <h2 class="h2">أربع خطوات، من الرنّة إلى الكرسي.</h2>
+      <p class="lede">المسار نفسه في كل مكالمة — ما يعتمد على مزاج ولا على ضغط اليوم.</p>
+    </div>
+
+    <div class="flow">
+      <div class="flow__line" aria-hidden="true"><i id="flowFill"></i></div>
+      <div class="flow__steps">
+        <article class="step anim">
+          <span class="step__node" aria-hidden="true"><svg><use href="#i-ring"></use></svg></span>
+          <span class="step__n">01</span>
+          <h3>يرد أول رنّة</h3>
+          <p>يستقبل المكالمة على رقم العيادة نفسه، يسلّم، ويسأل المريض وش يحتاج.</p>
+          <span class="step__meta">٢٤/٧ · بلا انتظار</span>
+        </article>
+        <article class="step anim">
+          <span class="step__node" aria-hidden="true"><svg><use href="#i-ask"></use></svg></span>
+          <span class="step__n">02</span>
+          <h3>يفهم ويجاوب</h3>
+          <p>يجاوب عن الخدمات والأطباء والأسعار والدوام — من قاعدة معرفة عيادتك أنت.</p>
+          <span class="step__meta">قاعدة معرفة العيادة</span>
+        </article>
+        <article class="step anim">
+          <span class="step__node" aria-hidden="true"><svg><use href="#i-cal"></use></svg></span>
+          <span class="step__n">03</span>
+          <h3>يحجز في تقويمك</h3>
+          <p>يأخذ الاسم والعمر ورقم الواتساب، يتحقق من أوقات الطبيب الفاضية، ويثبّت الموعد.</p>
+          <span class="step__meta">تحقق من التوفر · ٣٠ دقيقة</span>
+        </article>
+        <article class="step anim">
+          <span class="step__node" aria-hidden="true"><svg><use href="#i-bell"></use></svg></span>
+          <span class="step__n">04</span>
+          <h3>يؤكّد ويذكّر</h3>
+          <p>يرسل تأكيد على الواتساب فوراً، ويذكّر المريض قبل موعده بساعة.</p>
+          <span class="step__meta">تأكيد + تذكير</span>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٥ · القدرات ============================ -->
+<section class="band on-paper" id="caps">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="shell band__in">
+    <div class="sec-head anim">
+      <span class="eyebrow">القدرات</span>
+      <h2 class="h2">وش يقدر يسوّي بالضبط.</h2>
+      <p class="lede">كل قدرة مربوطة بنظام عيادتك — التقويم، قاعدة المعرفة، والواتساب.</p>
+    </div>
+
+    <div class="bento" id="bento">
+      <article class="cell cell--w cell--dark anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-book"></use></svg></span>
+        <h3>يحجز موعد كامل</h3>
+        <p>الاسم، العمر، رقم الواتساب، والطبيب المطلوب — ويكتبها في التقويم بدون تدخّل من أحد.</p>
+      </article>
+      <article class="cell cell--w anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-ask"></use></svg></span>
+        <h3>يجاوب عن العيادة</h3>
+        <p>الخدمات، الأطباء، الأسعار، الدوام، والموقع — إجابات من ملف عيادتك، مو من عنده.</p>
+      </article>
+
+      <article class="cell anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-cancel"></use></svg></span>
+        <h3>يعدّل ويلغي</h3>
+        <p>المريض يعطيه تاريخ موعده ووقته، والموظف يلغيه أو ينقله ويأكّد التعديل.</p>
+      </article>
+      <article class="cell anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-clock"></use></svg></span>
+        <h3>يتحقق من التوفر</h3>
+        <p>يقرأ جدول كل طبيب ويعرض الأوقات الفاضية فقط — بلا حجز مزدوج.</p>
+      </article>
+      <article class="cell cell--w anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-chat"></use></svg></span>
+        <h3>يأكّد على الواتساب</h3>
+        <p>رسالة تأكيد فور الحجز، وتذكير قبل الموعد بساعة — بنفس نبرة العيادة.</p>
+      </article>
+
+      <article class="cell cell--w anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-alert"></use></svg></span>
+        <h3>يستقبل الشكاوى</h3>
+        <p>يسجّل الشكوى باسم المريض، يحوّلها لبريد الإدارة مباشرة، ويطمّن المريض إنها وصلت.</p>
+      </article>
+      <article class="cell anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-sync"></use></svg></span>
+        <h3>يربط مع تقويمك</h3>
+        <p>يشتغل على التقويم اللي تستخدمه اليوم بتوقيت الرياض، بلا نظام جديد تتعلّمه.</p>
+      </article>
+      <article class="cell anim">
+        <span class="cell__ico" aria-hidden="true"><svg><use href="#i-chart"></use></svg></span>
+        <h3>يعطيك تقرير يومي</h3>
+        <p>كم مكالمة، كم موعد تأكّد، ووش يحتاج متابعة منك — في لوحة وحدة.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٦ · المكالمة واللوحة ============================ -->
+<section class="band on-void" id="talk">
+  <div class="rings rings--bl" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell band__in">
+    <div class="talk">
+      <div class="talk__sticky anim">
+        <span class="eyebrow">مكالمة حقيقية</span>
+        <h2 class="h2">من السلام إلى التذكير.</h2>
+        <p class="lede">جمل قصيرة، خيار واضح، وتأكيد بالأرقام. بلا مقدمات ولا لغة تسويقية.</p>
+
+        <div class="dash">
+          <div class="dash__bar">
+            <span class="mark mark--sm" style="--m:22px" aria-hidden="true"><i class="core"></i></span>
+            <span class="lockup__ar" style="--lk:14px">موظف <span class="ai">AI</span></span>
+            <em>اليوم · الأحد</em>
+          </div>
+          <div class="dash__kpis">
+            <div class="kpi kpi--a"><b data-count="14">0</b><span>مكالمات اليوم</span></div>
+            <div class="kpi kpi--b"><b data-count="9">0</b><span>مواعيد مؤكدة</span></div>
+            <div class="kpi kpi--c"><b data-count="1">0</b><span>يحتاج متابعة</span></div>
+          </div>
+          <div class="dash__rows">
+            <div class="row row--ok"><i aria-hidden="true"></i><span>تنظيف أسنان · د. سارة</span><em>16:30</em></div>
+            <div class="row row--ok"><i aria-hidden="true"></i><span>كشف عام · د. عبدالله</span><em>17:00</em></div>
+            <div class="row row--flag"><i aria-hidden="true"></i><span>شكوى — محوّلة للإدارة</span><em>18:15</em></div>
+          </div>
+        </div>
+
+        <div class="sms">
+          <b>رسالة التذكير</b>
+          <p>«تذكير: موعدك اليوم ٤:٣٠ في عيادة النخبة. للتعديل ردّ (١).»</p>
+        </div>
+      </div>
+
+      <div class="turns">
+        <div class="turn turn--p anim"><span class="turn__who">المريض</span><p class="turn__say">السلام عليكم، أبغى موعد تنظيف أسنان.</p></div>
+        <div class="turn turn--ai anim"><span class="turn__who">موظف AI</span><p class="turn__say">وعليكم السلام، حياك الله. عندنا الأحد ٤:٣٠ أو الاثنين ١١:٠٠ — أيهما يناسبك؟</p></div>
+        <div class="turn turn--p anim"><span class="turn__who">المريض</span><p class="turn__say">الأحد أفضل.</p></div>
+        <div class="turn turn--ai anim"><span class="turn__who">موظف AI</span><p class="turn__say">أبشر، حجزت لك الأحد ٤:٣٠ مع د. سارة، وأذكّرك قبلها بساعة.</p></div>
+        <div class="turn turn--p anim"><span class="turn__who">المريض</span><p class="turn__say">كم تكلفة التنظيف؟</p></div>
+        <div class="turn turn--ai anim"><span class="turn__who">موظف AI</span><p class="turn__say">التنظيف عندنا بمئتين ريال، ويشمل الكشف. تحب أضيفه للموعد؟</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٧ · الدليل ============================ -->
+<section class="band on-brass">
+  <div class="rings rings--tl-brassink" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell band__in">
+    <div class="proof">
+      <div>
+        <span class="eyebrow">من عيادة شغّالة</span>
+        <blockquote class="quote" data-split>«حجزت ٩ مواعيد وأنا نايم.»</blockquote>
+        <div class="quote__by anim">د. عبدالله — عيادة الياسمين</div>
+      </div>
+      <div class="bigstat anim">
+        <b data-count="38" data-prefix="+" data-suffix="%">0</b>
+        <strong>مواعيد مؤكدة بعد أول شهر تشغيل.</strong>
+        <span>عيادة أسنان — شمال الرياض · ٢٠٢٦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٨ · الأسئلة ============================ -->
+<section class="band on-light" id="faq">
+  <div class="rings rings--tr-ink" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell band__in">
+    <div class="faq">
+      <div class="faq__head anim">
+        <span class="eyebrow">أسئلة متكررة</span>
+        <h2 class="h2">اللي يسأل عنه أصحاب العيادات.</h2>
+        <p class="lede">ما لقيت جوابك؟ اطلب مكالمة تجريبية ونجاوبك مباشرة.</p>
+      </div>
+
+      <div class="faq__list">
+        <details class="qa anim">
+          <summary>يفهم اللهجة السعودية فعلاً؟<span class="qa__sign" aria-hidden="true">+</span></summary>
+          <div class="qa__body"><p>إي. مدرّب على مكالمات عيادات بلهجة سعودية، ويرد بنفسها — «أبشر»، «على طول»، «حجزت لك». وإذا كلّمه المريض بالفصحى أو بلهجة ثانية يكمل معه عادي.</p></div>
+        </details>
+        <details class="qa anim">
+          <summary>يربط مع تقويم عيادتي الحالي؟<span class="qa__sign" aria-hidden="true">+</span></summary>
+          <div class="qa__body"><p>نعم، يكتب في التقويم اللي تستخدمه اليوم بتوقيت الرياض. المدة الافتراضية للموعد ٣٠ دقيقة وتقدر تغيّرها لكل خدمة، ويقرأ جدول كل طبيب قبل ما يعرض أي وقت.</p></div>
+        </details>
+        <details class="qa anim">
+          <summary>بيانات المرضى وين تروح؟<span class="qa__sign" aria-hidden="true">+</span></summary>
+          <div class="qa__body"><p>بيانات عيادتك محفوظة في حسابك وحدك، ولا تُستخدم لتدريب أي نموذج. تصلك أنت وتبقى عندك، وتقدر تحذفها متى ما طلبت.</p></div>
+        </details>
+        <details class="qa anim">
+          <summary>كم ياخذ التشغيل؟<span class="qa__sign" aria-hidden="true">+</span></summary>
+          <div class="qa__body"><p>نجهّز قاعدة معرفة عيادتك (الخدمات، الأطباء، الأسعار، الدوام)، نربط التقويم والرقم، ونجرّب معك مكالمات. أغلب العيادات تشتغل في أقل من أسبوع.</p></div>
+        </details>
+        <details class="qa anim">
+          <summary>وإذا ما عرف الجواب؟<span class="qa__sign" aria-hidden="true">+</span></summary>
+          <div class="qa__body"><p>يقولها بصراحة ويعرض طريقة ثانية — يحوّل المكالمة، أو يسجّل طلب اتصال يوصلك. ما يخترع جواب ولا يعطي المريض معلومة طبية.</p></div>
+        </details>
+        <details class="qa anim">
+          <summary>يشتغل على رقم العيادة نفسه؟<span class="qa__sign" aria-hidden="true">+</span></summary>
+          <div class="qa__body"><p>نعم. يرد على رقمك الحالي، أو يستقبل بس المكالمات الفائتة وبعد الدوام — أنت تختار متى يدخل.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ٩ · الدعوة ============================ -->
+<section class="band" id="try" style="background:var(--petrol-deep)">
+  <div class="aurora" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
+  <div class="rings rings--br" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <div class="shell band__in">
+    <div class="final">
+      <div class="anim">
+        <span class="eyebrow">مكالمة تجريبية</span>
+        <h2 class="h2">خلّه يكلّمك، وشوف بنفسك.</h2>
+        <p class="lede">اترك بيانات عيادتك ونخلّي موظف AI يكلّمك على جوالك بمكالمة تجريبية على خدماتك أنت.</p>
+        <div class="points">
+          <div class="point"><i aria-hidden="true">✓</i><span>المكالمة على خدمات عيادتك وأسعارك، مو نموذج جاهز.</span></div>
+          <div class="point"><i aria-hidden="true">✓</i><span>التسعير حسب حجم العيادة وعدد المكالمات.</span></div>
+          <div class="point"><i aria-hidden="true">✓</i><span>بلا التزام — إذا ما عجبك، ما كمّلنا.</span></div>
+        </div>
+      </div>
+
+      <form class="form anim" id="demoForm" novalidate>
+        <div class="form__fields">
+          <div class="field">
+            <label for="clinic">اسم العيادة</label>
+            <input id="clinic" name="clinic" type="text" autocomplete="organization" placeholder="عيادة النخبة" required>
+          </div>
+          <div class="field">
+            <label for="phone">رقم الجوال</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="05X XXX XXXX" required>
+          </div>
+          <div class="field">
+            <label for="kind">تخصص العيادة</label>
+            <select id="kind" name="kind">
+              <option>أسنان</option>
+              <option>جلدية وتجميل</option>
+              <option>عام وباطنية</option>
+              <option>مجمع طبي</option>
+              <option>غير ذلك</option>
+            </select>
+          </div>
+          <div class="form__hp" aria-hidden="true">
+            <label for="company">اترك هذا الحقل فاضياً</label>
+            <input id="company" name="company" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn--primary" type="submit">اطلب المكالمة</button>
+          <p class="form__note">نكلّمك خلال ساعة عمل وحدة.</p>
+          <p class="form__err" role="alert" hidden></p>
+        </div>
+        <div class="form__done" role="status">
+          <span class="tick" aria-hidden="true">✓</span>
+          <span><b>تم.</b> استلمنا طلبك، ونكلّمك خلال ساعة عمل.</span>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ١٠ · الفوتر ============================ -->
+<footer class="band on-void">
+  <div class="grain" aria-hidden="true"></div>
+  <div class="shell band__in" style="padding-block:clamp(42px,5vw,64px)">
+    <div class="foot__top">
+      <div>
+        <div class="lockup">
+          <span class="mark" style="--m:50px" aria-hidden="true"><i class="r1"></i><i class="r2"></i><i class="core"></i><i class="gloss"></i></span>
+          <span class="lockup__ar" style="--lk:25px">موظف <span class="ai">AI</span></span>
+        </div>
+        <p class="foot__tag">يرد أول رنّة، وما يفوّت موعد.</p>
+      </div>
+      <nav class="foot__nav" aria-label="روابط الفوتر">
+        <a href="#miss">المشكلة</a>
+        <a href="#how">كيف يشتغل</a>
+        <a href="#caps">القدرات</a>
+        <a href="#talk">المكالمة</a>
+        <a href="#faq">الأسئلة</a>
+        <a href="#try">اطلب تجربة</a>
+      </nav>
+    </div>
+
+    <div class="foot__word" aria-hidden="true">MOWAZAFAI</div>
+
+    <div class="foot__bot">
+      <span dir="ltr">MOWAZAFAI.COM</span>
+      <a href="https://wa.me/96265236672" target="_blank" rel="noopener" dir="ltr" style="color:var(--brass)">واتساب ‎+962 6 523 6672</a>
+      <span>© ٢٠٢٦ موظف AI — الرياض</span>
+    </div>
+  </div>
+</footer>
+
+<!-- زر تواصل ثابت. رابط عادي: يشتغل حتى لو تعطّل الجافاسكربت.
+     لو غيّرت الرقم، غيّره هنا وفي WHATSAPP_FALLBACK بالسكربت. -->
+<a class="wa" href="https://wa.me/96265236672" target="_blank" rel="noopener"
+   aria-label="راسلنا على واتساب">
+  <svg aria-hidden="true" focusable="false"><use href="#i-whatsapp"></use></svg>
+  <span class="wa__txt">راسلنا واتساب</span>
+</a>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ————————————————————————————————————————————————
+     التخزين: Supabase مباشرة، بلا خادم وسيط.
+
+     ١) نفّذ SQL إنشاء جدول leads وفعّل RLS بسياسة «إدخال فقط».
+     ٢) حط رابط المشروع ومفتاح anon تحت.
+
+     مفتاح anon معلن للجميع بطبيعته — هذا تصميم Supabase، وأمانه
+     يعتمد على RLS لا على إخفاء المفتاح. مع سياسة إدخال فقط وبلا
+     سياسة قراءة، ما أحد يقدر يقرأ الليدات من المتصفح.
+
+     ما دام فاضياً، النموذج يقول بصراحة إنه غير موصول بدل ما
+     يدّعي النجاح ويضيّع الطلب.
+
+     WHATSAPP_FALLBACK: رقمك بصيغة دولية بلا + ولا مسافات
+     (مثال 9665XXXXXXXX). يظهر كطريق بديل لو فشل الإرسال.
+     ———————————————————————————————————————————————— */
+  var SUPABASE_URL = "https://grqpmmytvjojfyjjjnzr.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdycXBtbXl0dmpvamZ5ampqbnpyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg1MTkxNjMsImV4cCI6MjEwNDA5NTE2M30.S9Q3GFESnvPoldTSyZIzxvf9dKvRaCqJU6t1oD0Ow38";
+  var LEADS_TABLE = "leads";
+
+  /* بديل عام: أي ويبهوك يستقبل JSON. يُستخدم فقط لو Supabase غير معيّن. */
+  var FORM_ENDPOINT = "";
+
+  var WHATSAPP_FALLBACK = "96265236672";
+
+  var READY = !!window.MWZ_READY;
+  var $  = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  /* ==========================================================
+     الموجة الصوتية — تشتغل حتى بدون GSAP
+     ========================================================== */
+  var BARS = 44;
+  var waveEl = $("#wave");
+  var bars = [];
+
+  if (waveEl) {
+    for (var i = 0; i < BARS; i++) {
+      var b = document.createElement("b");
+      waveEl.appendChild(b);
+      bars.push(b);
+    }
+  }
+
+  /* شكل الموجة: أعلى في المنتصف */
+  function envelope(i) {
+    var t = i / (BARS - 1);
+    return 0.35 + 0.65 * Math.sin(Math.PI * t);
+  }
+
+  var waveRAF = null;
+  var waveLevel = 0.12;
+
+  function drawWave(t) {
+    for (var i = 0; i < bars.length; i++) {
+      var n = Math.sin(t / 190 + i * 0.55) * 0.5 + 0.5;
+      var n2 = Math.sin(t / 90 + i * 1.7) * 0.5 + 0.5;
+      var v = 0.08 + waveLevel * envelope(i) * (n * 0.65 + n2 * 0.35);
+      bars[i].style.transform = "scaleY(" + v.toFixed(3) + ")";
+    }
+  }
+
+  function startWave() {
+    if (waveRAF || !bars.length) return;
+    var loop = function (t) { drawWave(t); waveRAF = requestAnimationFrame(loop); };
+    waveRAF = requestAnimationFrame(loop);
+  }
+  function stopWave() {
+    if (waveRAF) { cancelAnimationFrame(waveRAF); waveRAF = null; }
+  }
+
+  /* ==========================================================
+     تشغيل المكالمة — بتحكّم المستخدم
+     ========================================================== */
+  var SCRIPT = [
+    { who: "المريض",   text: "السلام عليكم، أبغى موعد تنظيف أسنان.", ms: 2600 },
+    { who: "موظف AI",  text: "وعليكم السلام، حياك الله. عندنا الأحد ٤:٣٠ أو الاثنين ١١:٠٠ — أيهما يناسبك؟", ms: 4200 },
+    { who: "المريض",   text: "الأحد أفضل.", ms: 1900 },
+    { who: "موظف AI",  text: "أبشر، حجزت لك الأحد ٤:٣٠ مع د. سارة، وأذكّرك قبلها بساعة.", ms: 4200 }
+  ];
+  var IDLE_TEXT = "اضغط «شغّل المكالمة» تسمع مثال حقيقي.";
+
+  var capEl = $("#cap");
+  var playBtn = $("#playBtn");
+  var playing = false;
+  var timers = [];
+
+  function clearTimers() {
+    timers.forEach(clearTimeout);
+    timers = [];
+  }
+
+  function setCap(text, live) {
+    if (!capEl) return;
+    capEl.textContent = text;
+    capEl.classList.toggle("cap--idle", !live);
+  }
+
+  function stopCall() {
+    playing = false;
+    clearTimers();
+    stopWave();
+    waveLevel = 0.12;
+    if (bars.length) drawWave(0);
+    setCap(IDLE_TEXT, false);
+    if (playBtn) playBtn.textContent = "شغّل المكالمة";
+  }
+
+  function playCall() {
+    playing = true;
+    clearTimers();
+    if (playBtn) playBtn.textContent = "إيقاف";
+    startWave();
+
+    var at = 0;
+    SCRIPT.forEach(function (line) {
+      timers.push(setTimeout(function () {
+        setCap(line.text, true);
+        waveLevel = line.who === "موظف AI" ? 0.92 : 0.42;
+      }, at));
+      at += line.ms;
+    });
+
+    timers.push(setTimeout(function () {
+      setCap("تم الحجز في التقويم، وتأكيد الواتساب راح للمريض.", true);
+      waveLevel = 0.2;
+      timers.push(setTimeout(stopCall, 2600));
+    }, at));
+  }
+
+  if (playBtn) {
+    playBtn.addEventListener("click", function () {
+      playing ? stopCall() : playCall();
+    });
+  }
+
+  /* موجة ساكنة لطيفة حتى قبل التشغيل */
+  if (bars.length) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      bars.forEach(function (b, i) { b.style.transform = "scaleY(" + (0.14 + envelope(i) * 0.3).toFixed(3) + ")"; });
+    } else {
+      startWave();
+    }
+  }
+
+  /* ==========================================================
+     الأكورديون — ارتفاع متحرك (عنصر details يبقى سليماً بدون JS)
+     ========================================================== */
+  $$("details.qa").forEach(function (d) {
+    var body = $(".qa__body", d);
+    if (!body) return;
+    var animating = false;
+
+    d.addEventListener("click", function (e) {
+      if (!READY || animating) return;
+      if (!e.target.closest("summary")) return;
+      e.preventDefault();
+      animating = true;
+
+      if (d.open) {
+        window.gsap.to(body, {
+          height: 0, duration: 0.3, ease: "power2.in",
+          onComplete: function () { d.open = false; body.style.height = ""; animating = false; }
+        });
+      } else {
+        d.open = true;
+        window.gsap.fromTo(body, { height: 0 }, {
+          height: "auto", duration: 0.42, ease: "power2.out",
+          onComplete: function () { body.style.height = ""; animating = false; }
+        });
+      }
+    });
+  });
+
+  /* ==========================================================
+     النموذج
+     ========================================================== */
+  /* توحيد صيغة الجوال من أول لحظة. بدون هذا تنتهي بأرقام
+     بصيغ مختلفة (05… و 5… و +966…) لنفس العميل، وتتعب بالمطابقة
+     بين ليدات الموقع وليدات المكالمات لاحقاً. */
+  function normalizePhone(raw) {
+    // أرقام عربية-هندية وفارسية → لاتينية
+    var s = String(raw).replace(/[٠-٩]/g, function (c) {
+      return String.fromCharCode(c.charCodeAt(0) - 0x0660 + 48);
+    }).replace(/[۰-۹]/g, function (c) {
+      return String.fromCharCode(c.charCodeAt(0) - 0x06F0 + 48);
+    });
+
+    s = s.replace(/[^\d+]/g, "").replace(/^00/, "+");
+    if (s.charAt(0) === "+") return s;
+
+    var d = s.replace(/\D/g, "");
+    if (/^9665\d{8}$/.test(d)) return "+" + d;
+    if (/^05\d{8}$/.test(d)) return "+966" + d.slice(1);
+    if (/^5\d{8}$/.test(d)) return "+966" + d;
+    return String(raw).trim(); // شكل غير متوقع: خزّنه كما هو بدل إفساده
+  }
+
+  function digitCount(s) { return (String(s).match(/\d/g) || []).length; }
+
+  /* يرسل الليد لـSupabase مباشرة، أو لويبهوك عام لو عُيّن. */
+  function sendLead(payload) {
+    if (SUPABASE_URL && SUPABASE_ANON_KEY) {
+      return fetch(
+        SUPABASE_URL.replace(/\/+$/, "") + "/rest/v1/" + LEADS_TABLE,
+        {
+          method: "POST",
+          headers: {
+            "apikey": SUPABASE_ANON_KEY,
+            "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+            "Content-Type": "application/json",
+            // لا تُرجع الصف المُدخل: ما نحتاجه، وسياسة القراءة مقفلة
+            "Prefer": "return=minimal"
+          },
+          body: JSON.stringify(payload)
+        }
+      );
+    }
+    if (FORM_ENDPOINT) {
+      return fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+    }
+    return null;
+  }
+
+  var form = $("#demoForm");
+  if (form) {
+    var errBox = $(".form__err", form);
+    var submitBtn = $('button[type="submit"]', form);
+    var sending = false;
+
+    function showErr(text, withWhatsapp) {
+      if (!errBox) return;
+      errBox.textContent = text;
+      if (withWhatsapp && WHATSAPP_FALLBACK) {
+        errBox.appendChild(document.createTextNode(" "));
+        var a = document.createElement("a");
+        a.href = "https://wa.me/" + WHATSAPP_FALLBACK;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = "أو راسلنا على واتساب.";
+        errBox.appendChild(a);
+      }
+      errBox.hidden = false;
+    }
+
+    form.addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      if (sending) return;
+
+      var clinic = form.clinic.value.trim();
+      var phone = form.phone.value.trim();
+
+      if (!clinic || !phone) {
+        showErr("اكتب اسم العيادة ورقم الجوال عشان نقدر نكلّمك.", false);
+        (clinic ? form.phone : form.clinic).focus();
+        return;
+      }
+
+      /* الروبوت يعبّي الحقل المخفي، والإنسان لا. نعرض له نجاحاً
+         ولا نرسل شيئاً — أرخص من أي مكتبة مكافحة سبام. */
+      if (form.company && form.company.value) {
+        form.classList.add("is-sent");
+        return;
+      }
+
+      /* وحّد الرقم قبل العدّ: \d ما تطابق الأرقام العربية-الهندية،
+         فعدّها على النص الخام يرفض ٠٥٠١٢٣٤٥٦٧ وهو رقم صحيح. */
+      var normPhone = normalizePhone(phone);
+      if (digitCount(normPhone) < 9) {
+        showErr("رقم الجوال ناقص. اكتبه كامل، مثل ٠٥٠١٢٣٤٥٦٧.", false);
+        form.phone.focus();
+        return;
+      }
+
+      /* created_at له قيمة افتراضية في الجدول — إرسال عمود غير موجود
+         يرجّع 400 من PostgREST، فنرسل الأعمدة المعرّفة فقط. */
+      var payload = {
+        clinic: clinic,
+        phone: normPhone,
+        kind: form.kind.value,
+        page: location.href,
+        ref: document.referrer || null,
+        source: "website"
+      };
+
+      var req = sendLead(payload);
+      if (!req) {
+        showErr("النموذج غير موصول بعد. عيّن SUPABASE_URL و SUPABASE_ANON_KEY في أعلى السكربت.", false);
+        return;
+      }
+
+      sending = true;
+      if (errBox) errBox.hidden = true;
+      if (submitBtn) {
+        submitBtn.setAttribute("aria-busy", "true");
+        submitBtn.textContent = "جاري الإرسال…";
+      }
+
+      req
+        .then(function (res) {
+          /* لا نقول «تم» إلا إذا قال الخادم ذلك فعلاً — إعلان نجاح
+             كاذب معناه عميل ضايع وهو يظن إن طلبه وصل. */
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          form.classList.add("is-sent");
+        })
+        .catch(function () {
+          /* البيانات تبقى في الحقول عشان ما يعيد كتابتها */
+          showErr("ما وصل الطلب. تأكد من الاتصال وأعد المحاولة،", true);
+        })
+        .then(function () {
+          sending = false;
+          if (submitBtn) {
+            submitBtn.removeAttribute("aria-busy");
+            submitBtn.textContent = "اطلب المكالمة";
+          }
+        });
+    });
+  }
+
+  /* ==========================================================
+     من هنا فصاعداً: حركة GSAP فقط.
+     إذا ما اشتغل GSAP، المحتوى كله ظاهر أصلاً ولا شيء ينكسر.
+     ========================================================== */
+  if (!READY) return;
+
+  var gsap = window.gsap;
+  var ScrollTrigger = window.ScrollTrigger;
+  gsap.registerPlugin(ScrollTrigger);
+
+  var EASE = "power2.out";
+
+  /* ————————————————————————————————————————————————
+     تمرير ناعم — هذا هو الفرق الأساسي في الإحساس.
+     المكتبة والمحفّزات نفسها موجودة أصلاً؛ الناقص كان انزلاق
+     العجلة. نربطه بـScrollTrigger حتى لا يختل القسم المثبّت.
+     يُتجاوَز كلياً على اللمس وعند تفضيل تقليل الحركة.
+     ———————————————————————————————————————————————— */
+  var lenis = null;
+  if (window.Lenis && !window.matchMedia("(pointer: coarse)").matches) {
+    try {
+      lenis = new window.Lenis({
+        duration: 1.05,
+        smoothWheel: true,
+        syncTouch: false,
+        easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }
+      });
+
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+
+      /* روابط التنقّل تمرّ عبر Lenis، وإلا قفزت فجأة */
+      $$('a[href^="#"]').forEach(function (a) {
+        a.addEventListener("click", function (ev) {
+          var id = a.getAttribute("href");
+          if (!id || id === "#") return;
+          var target = document.querySelector(id);
+          if (!target) return;
+          ev.preventDefault();
+          lenis.scrollTo(target, { offset: -70 });
+        });
+      });
+    } catch (e) {
+      lenis = null; // تمرير عادي — لا شيء ينكسر
+    }
+  }
+
+  /* --- تقسيم العناوين لكلمات (بدل SplitText المدفوع) --- */
+  function splitWords(el) {
+    var out = [];
+    var walk = function (node, target) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var parts = n.textContent.split(/(\s+)/);
+          parts.forEach(function (p) {
+            if (!p) return;
+            if (/^\s+$/.test(p)) { target.appendChild(document.createTextNode(p)); return; }
+            /* علامة ترقيم وحدها ما تصير كلمة مستقلة — تُلصق بالكلمة قبلها
+               حتى ما تنزل سطر لحالها في العربي */
+            if (/^[،,.؛;:!?»«–—\-]+$/.test(p) && out.length) {
+              out[out.length - 1].textContent += p;
+              return;
+            }
+            var w = document.createElement("span");
+            w.style.display = "inline-block";
+            w.style.willChange = "transform";
+            w.textContent = p;
+            target.appendChild(w);
+            out.push(w);
+          });
+        } else if (n.nodeType === 1) {
+          var clone = n.cloneNode(false);
+          target.appendChild(clone);
+          walk(n, clone);
+        }
+      });
+    };
+    var frag = document.createElement("span");
+    walk(el, frag);
+    el.textContent = "";
+    while (frag.firstChild) el.appendChild(frag.firstChild);
+    return out;
+  }
+
+  /* --- شريط تقدّم القراءة --- */
+  var bar = $(".progress");
+  if (bar) {
+    gsap.to(bar, {
+      scaleX: 1, ease: "none",
+      scrollTrigger: { trigger: document.body, start: "top top", end: "bottom bottom", scrub: 0.3 }
+    });
+  }
+
+  /* --- العدّادات --- */
+  $$("[data-count]").forEach(function (el) {
+    var target = parseFloat(el.getAttribute("data-count")) || 0;
+    var pre = el.getAttribute("data-prefix") || "";
+    var suf = el.getAttribute("data-suffix") || "";
+    var obj = { v: 0 };
+    gsap.to(obj, {
+      v: target, duration: 1.4, ease: "power2.out",
+      scrollTrigger: { trigger: el, start: "top 88%", once: true },
+      onUpdate: function () { el.textContent = pre + Math.round(obj.v) + suf; },
+      onComplete: function () { el.textContent = pre + target + suf; }
+    });
+  });
+
+  /* --- تسلسل الافتتاح --- */
+  var heroBits = $$("[data-hero]").sort(function (a, b) {
+    return (+a.getAttribute("data-hero")) - (+b.getAttribute("data-hero"));
+  });
+  var h1 = $(".hero h1");
+  var h1Words = h1 ? splitWords(h1) : [];
+
+  var intro = gsap.timeline({ defaults: { ease: EASE } });
+  if (h1) intro.set(h1, { opacity: 1 });
+  intro
+    .fromTo(heroBits[1] || {}, { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" })
+    .fromTo(heroBits[0] || {}, { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.45")
+    .fromTo(h1Words, { opacity: 0, yPercent: 60 }, { opacity: 1, yPercent: 0, duration: 0.7, stagger: 0.045 }, "-=0.3")
+    .fromTo(heroBits.slice(2), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.09 }, "-=0.35");
+
+  /* --- كشف عام بالتمرير --- */
+  $$(".anim:not([data-hero])").forEach(function (el) {
+    gsap.fromTo(el, { opacity: 0, y: 26 }, {
+      opacity: 1, y: 0, duration: 0.65, ease: EASE,
+      scrollTrigger: { trigger: el, start: "top 88%", once: true }
+    });
+  });
+
+  /* --- Bento: stagger موجي --- */
+  var bento = $("#bento");
+  if (bento) {
+    gsap.fromTo($$(".cell", bento), { opacity: 0, scale: 0.94, y: 18 }, {
+      opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.3)",
+      stagger: { each: 0.055, from: "start", grid: "auto" },
+      scrollTrigger: { trigger: bento, start: "top 82%", once: true }
+    });
+  }
+
+  /* --- الاقتباس: كلمة كلمة --- */
+  var quote = $(".quote[data-split]");
+  if (quote) {
+    var qWords = splitWords(quote);
+    gsap.set(qWords, { opacity: 0, yPercent: 55 });
+    gsap.set(quote, { opacity: 1 });
+    gsap.to(qWords, {
+      opacity: 1, yPercent: 0, duration: 0.6, ease: EASE, stagger: 0.05,
+      scrollTrigger: { trigger: quote, start: "top 82%", once: true }
+    });
+  }
+
+  /* ==========================================================
+     حركة مشروطة بالمقاس — لا تثبيت ولا parallax على الجوال
+     ========================================================== */
+  var mm = gsap.matchMedia();
+
+  mm.add("(min-width: 769px)", function () {
+
+    /* --- ٣ · القسم المثبّت: المكالمات الفائتة --- */
+    var miss = $("#miss");
+    var stage = $("#missStage");
+    var countEl = $("#missCount");
+    var rows = $$("#callList .call");
+
+    if (miss && stage && countEl && rows.length) {
+      gsap.set(rows, { opacity: 0, y: 26 });
+      countEl.textContent = "0";
+
+      var counter = { v: 0 };
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: miss,
+          start: "top top",
+          end: "+=200%",
+          pin: stage,
+          scrub: 1,
+          onUpdate: function (self) {
+            var n = Math.min(rows.length, Math.floor(self.progress * (rows.length + 0.6)));
+            countEl.textContent = n;
+          }
+        }
+      });
+
+      rows.forEach(function (r) {
+        tl.to(r, { opacity: 1, y: 0, duration: 0.5, ease: EASE }, ">-0.15");
+      });
+
+      tl.to({}, { duration: 0.35 })
+        .add(function () {
+          miss.classList.add("is-saved");
+          countEl.textContent = rows.length;
+          $("#missLabel").textContent = "أربعة مواعيد، محجوزة وأنت نايم.";
+          $("#missNote").textContent = "موظف AI رد على الأربع، حجزها في التقويم، وأرسل تأكيد واتساب لكل مريض.";
+        })
+        .to({}, { duration: 0.5 });
+
+      /* الرجوع للحالة الأولى عند التمرير للأعلى */
+      ScrollTrigger.create({
+        trigger: miss,
+        start: "top top",
+        end: "+=200%",
+        onLeaveBack: function () {
+          miss.classList.remove("is-saved");
+          $("#missLabel").textContent = "مكالمات ضاعت الليلة.";
+          $("#missNote").textContent = "كل مكالمة ما تُرد عليها هي مريض راح لعيادة ثانية. والمشكلة مو في الموظف — الرنّة تجي في وقت ما فيه أحد فاضي لها.";
+        }
+      });
+    }
+
+    /* --- ٤ · خط الرحلة يُرسم مع التمرير --- */
+    var fill = $("#flowFill");
+    var steps = $$(".flow .step");
+    if (fill && steps.length) {
+      gsap.to(fill, {
+        scaleX: 1, ease: "none",
+        scrollTrigger: { trigger: ".flow", start: "top 72%", end: "bottom 72%", scrub: 0.6 }
+      });
+      steps.forEach(function (s) {
+        ScrollTrigger.create({
+          trigger: s, start: "top 76%",
+          onEnter: function () { s.classList.add("is-on"); },
+          onLeaveBack: function () { s.classList.remove("is-on"); }
+        });
+      });
+    }
+
+    /* --- Parallax على طبقات الشفق (٣ طبقات) --- */
+    $$(".aurora").forEach(function (a) {
+      var layers = $$("i", a);
+      layers.forEach(function (l, i) {
+        gsap.to(l, {
+          yPercent: (i + 1) * -9, ease: "none",
+          scrollTrigger: { trigger: a.parentElement, start: "top bottom", end: "bottom top", scrub: 0.6 }
+        });
+      });
+    });
+
+    /* --- Magnetic hover على عنصرين فقط --- */
+    var cleanups = [];
+    [$("#heroMark"), $("#playBtn")].forEach(function (el) {
+      if (!el) return;
+      var xTo = gsap.quickTo(el, "x", { duration: 0.45, ease: "elastic.out(1,0.4)" });
+      var yTo = gsap.quickTo(el, "y", { duration: 0.45, ease: "elastic.out(1,0.4)" });
+
+      var onMove = function (e) {
+        var r = el.getBoundingClientRect();
+        xTo((e.clientX - r.left - r.width / 2) * 0.3);
+        yTo((e.clientY - r.top - r.height / 2) * 0.3);
+      };
+      var onLeave = function () { xTo(0); yTo(0); };
+
+      el.addEventListener("pointermove", onMove);
+      el.addEventListener("pointerleave", onLeave);
+
+      cleanups.push(function () {
+        el.removeEventListener("pointermove", onMove);
+        el.removeEventListener("pointerleave", onLeave);
+        gsap.set(el, { x: 0, y: 0 });
+      });
+    });
+
+    /* يُستدعى عند تجاوز شرط المقاس (تصغير النافذة للجوال):
+       ينظّف المستمعين ويعيد قسم المكالمات لحالته الثابتة الصحيحة. */
+    return function () {
+      cleanups.forEach(function (fn) { fn(); });
+      var rws = $$("#callList .call");
+      if (rws.length) gsap.set(rws, { clearProps: "opacity,transform" });
+      var c = $("#missCount");
+      if (c) c.textContent = rws.length || 4;
+    };
+  });
+
+  /* الخطوط العربية تغيّر الارتفاعات — أعِد الحساب بعد تحميلها */
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
+  }
+  window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+
+  /* شبكة أمان: عارض بلا ارتفاع (لقطة ثابتة، متصفح بلا واجهة، مولّد صور
+     مصغّرة) لا تشتغل فيه محفّزات التمرير أبداً — فيبقى المحتوى مخفياً.
+     في هذي الحالة نلغي الحركة ونظهر كل شيء فوراً. */
+  /* تُكشف المحتوى فقط، ولا تُدمّر محفّزات التمرير: النافذة قد يكون
+     ارتفاعها صفراً مؤقتاً (تبويب مخفي، أو قبل استقرار التخطيط) ثم يصير
+     حقيقياً — وقتل الحركة وقتها يعطّلها لبقية الجلسة بلا سبب.
+     ولذلك أيضاً لا تعمل فوراً، بل بعد ما يستقر التخطيط. */
+  var safetyArmed = true;
+
+  function safetyReveal() {
+    if (!safetyArmed) return;
+    var h = window.innerHeight || document.documentElement.clientHeight || 0;
+
+    /* نافذة حقيقية: انزع الشبكة نهائياً واترك الحركة تشتغل */
+    if (h) {
+      safetyArmed = false;
+      ScrollTrigger.refresh();
+      return;
+    }
+
+    /* لُفَّت بـtry: هذي آخر شبكة أمان، وما يصح أنها هي نفسها ترمي خطأ */
+    try {
+      $$(".anim, [data-split]").forEach(function (el) {
+        gsap.set(el, { opacity: 1, y: 0, clearProps: "transition" });
+      });
+      $$("#callList .call").forEach(function (r) { gsap.set(r, { opacity: 1, y: 0 }); });
+      $$("[data-count]").forEach(function (el) {
+        var t = el.getAttribute("data-count");
+        el.textContent = (el.getAttribute("data-prefix") || "") + t + (el.getAttribute("data-suffix") || "");
+      });
+      var f = $("#flowFill");
+      if (f) gsap.set(f, { scaleX: 1 });
+    } catch (e) {
+      /* آخر ملاذ: أظهر كل شيء بلا GSAP إطلاقاً */
+      $$(".anim, [data-split]").forEach(function (el) {
+        el.style.cssText += ";opacity:1;transform:none;transition:none;";
+      });
+    }
+  }
+
+  window.addEventListener("load", safetyReveal);
+  setTimeout(safetyReveal, 800);
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden) safetyReveal();
+  });
+
+  /* ————————————————————————————————————————————————
+     حارس الظهور — تأمين ذاتي الإصلاح.
+     لو بقي عنصر داخل الشاشة ومخفي رغم أنه صار مرئياً، أظهره.
+     يغطّي أي خلل في محفّزات التمرير أو تعارض مع التمرير الناعم،
+     بلا ما يلغي الحركة: العناصر الطبيعية تظهر قبل ما ينتبه لها.
+     ———————————————————————————————————————————————— */
+  var watchdog = setInterval(function () {
+    var h = window.innerHeight || 0;
+    if (!h) return;
+
+    var remaining = 0;
+    $$(".anim, [data-split]").forEach(function (el) {
+      if (getComputedStyle(el).opacity !== "0") return;
+      remaining++;
+      var r = el.getBoundingClientRect();
+      // داخل الشاشة بوضوح ومع ذلك مخفي = المحفّز ما اشتغل
+      if (r.top < h * 0.85 && r.bottom > 0) {
+        gsap.to(el, { opacity: 1, y: 0, duration: 0.4, ease: EASE });
+      }
+    });
+
+    if (!remaining) clearInterval(watchdog);
+  }, 600);
+})();
+</script>
