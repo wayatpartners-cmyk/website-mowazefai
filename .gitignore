@@ -1,0 +1,21 @@
+# أسرار — لا تُرفع أبداً
+*.secret.*
+*.local.*
+.env
+.env.*
+supabase/*-with-key.sql
+RUN-THIS.sql
+
+# نظام التشغيل والمحررات
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/
+
+# مؤقتات البناء
+.head.part
+.body.part
+
+# local screenshot harness
+_shot.html

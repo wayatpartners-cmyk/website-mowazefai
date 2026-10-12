@@ -1,0 +1,83 @@
+<div class="showcase" data-showcase>
+  <div class="sc-tabs" role="tablist" aria-label="الخدمات">
+    <button class="sc-tab is-active" role="tab" aria-selected="true" aria-controls="sc-p0" id="sc-t0" type="button">
+      <span class="sc-title">مواقع العيادات</span>
+      <span class="sc-desc">موقع بيحوّل الزائر لمريض حاجز: سريع على الموبايل، حجز على واتساب بضغطة، ومربوط بخرائط جوجل.</span>
+      <span class="sc-bar"><i></i></span>
+    </button>
+    <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-p1" id="sc-t1" type="button" tabindex="-1">
+      <span class="sc-title">مواقع الشركات الصغيرة</span>
+      <span class="sc-desc">واجهة احترافية بهويتك، عربي وإنجليزي، لشركات السياحة والمتاجر ومقدمي الخدمات.</span>
+      <span class="sc-bar"><i></i></span>
+    </button>
+    <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-p2" id="sc-t2" type="button" tabindex="-1">
+      <span class="sc-title">شات بوت الرد الآلي</span>
+      <span class="sc-desc">بيرد عنك على واتساب وماسنجر وإنستغرام 24 ساعة، بيحجز، وبيسجّل العملاء المهتمين.</span>
+      <span class="sc-bar"><i></i></span>
+    </button>
+    <button class="sc-tab" role="tab" aria-selected="false" aria-controls="sc-p3" id="sc-t3" type="button" tabindex="-1">
+      <span class="sc-title">أتمتة الأعمال</span>
+      <span class="sc-desc">تذكيرات ومتابعات وجداول بتمشي لحالها، وأنظمتك مربوطة ببعض.</span>
+      <span class="sc-bar"><i></i></span>
+    </button>
+  </div>
+
+  <div class="sc-stage">
+    <!-- 0: clinic website -->
+    <div class="sc-panel is-active" role="tabpanel" id="sc-p0" aria-labelledby="sc-t0">
+      <div class="mock-browser" aria-hidden="true">
+        <div class="mb-bar"><i></i><i></i><i></i><span>your-clinic.jo</span></div>
+        <div class="mb-body">
+          <div class="mk mk-nav"><b></b><span></span><span></span><span></span></div>
+          <div class="mk mk-hero">
+            <div class="mk-lines"><em class="t1"></em><em class="t2"></em><em class="t3"></em></div>
+            <div class="mk-wa">{{i:whatsapp}} احجز على واتساب</div>
+          </div>
+          <div class="mk mk-tiles"><span>{{i:tooth}}<em></em></span><span>{{i:sparkles}}<em></em></span><span>{{i:calendar}}<em></em></span></div>
+          <div class="mk mk-map"><span class="pin">{{i:pin}}</span><em></em></div>
+        </div>
+      </div>
+      <a class="sc-link" href="/services/clinic-websites">تفاصيل مواقع العيادات</a>
+    </div>
+
+    <!-- 1: business website -->
+    <div class="sc-panel" role="tabpanel" id="sc-p1" aria-labelledby="sc-t1" hidden>
+      <div class="mock-browser" aria-hidden="true">
+        <div class="mb-bar"><i></i><i></i><i></i><span>your-business.jo</span><b class="mb-lang">EN</b></div>
+        <div class="mb-body">
+          <div class="mk mk-nav"><b></b><span></span><span></span><span></span></div>
+          <div class="mk mk-banner"><em class="t1"></em><em class="t2"></em></div>
+          <div class="mk mk-grid">
+            <span><i class="g1"></i><em></em><small></small></span>
+            <span><i class="g2"></i><em></em><small></small></span>
+            <span><i class="g3"></i><em></em><small></small></span>
+          </div>
+        </div>
+      </div>
+      <a class="sc-link" href="/services/business-websites">تفاصيل مواقع الشركات</a>
+    </div>
+
+    <!-- 2: chatbot -->
+    <div class="sc-panel" role="tabpanel" id="sc-p2" aria-labelledby="sc-t2" hidden>
+      <div class="mock-inbox" aria-hidden="true">
+        <div class="mi-row mk"><span class="ch ch-wa">{{i:whatsapp}}</span><div><b>كم سعر التبييض؟</b><em>الرد الآلي: هاي التفاصيل والسعر، وبقدر أحجزلك هلأ</em></div><time>الآن</time></div>
+        <div class="mi-row mk"><span class="ch ch-ig">{{i:instagram}}</span><div><b>وين موقعكم بالضبط؟</b><em>الرد الآلي: هاي الخريطة، وعنا موقف سيارات</em></div><time>الآن</time></div>
+        <div class="mi-row mk"><span class="ch ch-ms">{{i:messenger}}</span><div><b>بدي موعد السبت</b><em>الرد الآلي: السبت 10:30 أو 1:00، شو بيناسبك؟</em></div><time>الآن</time></div>
+        <div class="mi-lead mk">{{i:users}} عميل مهتم انضاف لجدول المتابعة</div>
+      </div>
+      <a class="sc-link" href="/services/chatbot">تفاصيل شات بوت الرد الآلي</a>
+    </div>
+
+    <!-- 3: automation -->
+    <div class="sc-panel" role="tabpanel" id="sc-p3" aria-labelledby="sc-t3" hidden>
+      <div class="mock-flow" aria-hidden="true">
+        <svg class="flow-lines" viewBox="0 0 400 300" preserveAspectRatio="none"><path d="M200 48 V 104"/><path d="M200 152 C 200 180, 90 180, 90 208"/><path d="M200 152 C 200 180, 310 180, 310 208"/></svg>
+        <div class="fn fn-1">{{i:chat}}<span>رسالة أو حجز جديد</span></div>
+        <div class="fn fn-2">{{i:bolt}}<span>موظف AI</span></div>
+        <div class="fn fn-3">{{i:file}}<span>جدول العملاء</span></div>
+        <div class="fn fn-4">{{i:calendar}}<span>تذكير قبل الموعد</span></div>
+      </div>
+      <a class="sc-link" href="/services/automation">تفاصيل أتمتة الأعمال</a>
+    </div>
+  </div>
+</div>

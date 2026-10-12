@@ -1,0 +1,72 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="logo" href="/">{{i:m-mark}}<span class="logo-word">موظف <span class="logo-ai">AI</span></span></a>
+        <p>بنبني للعيادات والشركات الصغيرة مواقع إلكترونية وشات بوت رد آلي وأتمتة، عشان يجيهم عملاء أكثر ويوفروا وقتهم. من عمّان، الأردن.</p>
+        <!-- روابط السوشال: حطي الرابط داخل href وبيظهر الزر تلقائياً -->
+        <div class="social">
+          <a aria-label="إنستغرام" target="_blank" rel="noopener">{{i:instagram}}</a>
+          <a aria-label="فيسبوك" target="_blank" rel="noopener">{{i:facebook}}</a>
+          <a aria-label="لينكدإن" target="_blank" rel="noopener">{{i:linkedin}}</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>الخدمات</h4>
+        <ul>
+          <li><a href="/services/clinic-websites">مواقع العيادات</a></li>
+          <li><a href="/services/business-websites">مواقع الشركات</a></li>
+          <li><a href="/services/chatbot">شات بوت الرد الآلي</a></li>
+          <li><a href="/services/automation">أتمتة الأعمال</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>الشركة</h4>
+        <ul>
+          <li><a href="/#work">نماذج من شغلنا</a></li>
+          <li><a href="/#process">كيف بنشتغل</a></li>
+          <li><a href="/#faq">الأسئلة الشائعة</a></li>
+          <li><a href="/privacy">سياسة الخصوصية</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>تواصل معنا</h4>
+        <ul>
+          <li><a href="wa:مرحبا موظف AI" data-wa="footer" target="_blank" rel="noopener">واتساب: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
+          <li><a href="mailto:{{EMAIL}}"><bdi>{{EMAIL}}</bdi></a></li>
+          <li><a href="tel:{{PHONE_TEL}}">اتصال: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
+          <li><span style="color:var(--muted);font-size:.94rem">عمّان، الأردن</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-mark" aria-hidden="true">MOWAZEFAI</div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> موظف AI. جميع الحقوق محفوظة.</span>
+      <a href="/privacy">سياسة الخصوصية</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="wa:مرحبا، شفت موقعكم وبدي أستفسر" data-wa="floating" target="_blank" rel="noopener" aria-label="راسلنا على واتساب">{{i:whatsapp}}<span>راسلنا على واتساب</span></a>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "{{SITE}}/#business",
+  "name": "موظف AI",
+  "alternateName": "Mowazef AI",
+  "url": "{{SITE}}/",
+  "logo": "{{SITE}}/assets/img/logo-512.png",
+  "image": "{{SITE}}/assets/img/og-ar.jpg",
+  "description": "مواقع إلكترونية وشات بوت رد آلي وأتمتة أعمال للعيادات والشركات الصغيرة في الأردن.",
+  "email": "{{EMAIL}}",
+  "telephone": "{{PHONE_TEL}}",
+  "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
+  "areaServed": { "@type": "Country", "name": "Jordan" },
+  "founder": { "@type": "Person", "name": "آية الزبون", "alternateName": "Aya Al-Zaboun" },
+  "knowsLanguage": ["ar", "en"]
+}
+</script>
+</body>
+</html>

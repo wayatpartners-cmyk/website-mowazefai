@@ -1,0 +1,72 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-about">
+        <a class="logo" href="/en/">{{i:m-mark}}<span class="logo-word logo-word--en">MOWAZEFAI</span></a>
+        <p>We build websites, auto-reply chatbots and automations for clinics and small businesses, so they win more customers and save time. Based in Amman, Jordan.</p>
+        <!-- Social links: put the URL in href and the icon appears automatically -->
+        <div class="social">
+          <a aria-label="Instagram" target="_blank" rel="noopener">{{i:instagram}}</a>
+          <a aria-label="Facebook" target="_blank" rel="noopener">{{i:facebook}}</a>
+          <a aria-label="LinkedIn" target="_blank" rel="noopener">{{i:linkedin}}</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/en/services/clinic-websites">Clinic websites</a></li>
+          <li><a href="/en/services/business-websites">Business websites</a></li>
+          <li><a href="/en/services/chatbot">Auto-reply chatbot</a></li>
+          <li><a href="/en/services/automation">Business automation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="/en/#work">Our work</a></li>
+          <li><a href="/en/#process">How we work</a></li>
+          <li><a href="/en/#faq">FAQ</a></li>
+          <li><a href="/en/privacy">Privacy policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="wa:Hi Mowazef AI" data-wa="footer" target="_blank" rel="noopener">WhatsApp: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
+          <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+          <li><a href="tel:{{PHONE_TEL}}">Call: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
+          <li><span style="color:var(--muted);font-size:.94rem">Amman, Jordan</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-mark" aria-hidden="true">MOWAZEFAI</div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Mowazef AI. All rights reserved.</span>
+      <a href="/en/privacy">Privacy policy</a>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="wa:Hi, I saw your website and have a question" data-wa="floating" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">{{i:whatsapp}}<span>Chat on WhatsApp</span></a>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": "{{SITE}}/#business",
+  "name": "Mowazef AI",
+  "alternateName": "موظف AI",
+  "url": "{{SITE}}/en/",
+  "logo": "{{SITE}}/assets/img/logo-512.png",
+  "image": "{{SITE}}/assets/img/og-en.jpg",
+  "description": "Websites, auto-reply chatbots and business automation for clinics and small businesses in Jordan.",
+  "email": "{{EMAIL}}",
+  "telephone": "{{PHONE_TEL}}",
+  "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
+  "areaServed": { "@type": "Country", "name": "Jordan" },
+  "founder": { "@type": "Person", "name": "Aya Al-Zaboun", "alternateName": "آية الزبون" },
+  "knowsLanguage": ["ar", "en"]
+}
+</script>
+</body>
+</html>

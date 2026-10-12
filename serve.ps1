@@ -33,6 +33,7 @@ $mime = @{
   '.woff'  = 'font/woff'
   '.woff2' = 'font/woff2'
   '.txt'   = 'text/plain; charset=utf-8'
+  '.xml'   = 'application/xml; charset=utf-8'
 }
 
 $listener = New-Object System.Net.HttpListener
@@ -61,6 +62,12 @@ while ($listener.IsListening) {
 
     $path = Join-Path $root $rel
     if (Test-Path $path -PathType Container) { $path = Join-Path $path 'index.html' }
+
+    # Match vercel.json "cleanUrls": /privacy -> privacy.html
+    if (-not (Test-Path $path -PathType Leaf) -and -not [System.IO.Path]::GetExtension($path)) {
+      if (Test-Path "$path.html" -PathType Leaf) { $path = "$path.html" }
+    }
+
     $full = [System.IO.Path]::GetFullPath($path)
 
     if (-not $full.StartsWith($rootFull, [System.StringComparison]::OrdinalIgnoreCase)) {
@@ -84,11 +91,11 @@ while ($listener.IsListening) {
         $res.Headers.Add('X-Content-Type-Options', 'nosniff')
         $res.Headers.Add('Referrer-Policy', 'strict-origin-when-cross-origin')
         $res.Headers.Add('Content-Security-Policy', ("default-src 'self'; " +
-          "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; " +
+          "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; " +
           "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; " +
           "font-src 'self' https://fonts.gstatic.com; " +
-          "img-src 'self' data:; " +
-          "connect-src 'self' https://grqpmmytvjojfyjjjnzr.supabase.co; " +
+          "img-src 'self' data: https://*.google-analytics.com https://www.googletagmanager.com; " +
+          "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; " +
           "base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'"))
       }
     }

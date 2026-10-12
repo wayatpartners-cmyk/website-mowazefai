@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/" aria-label="موظف AI — الصفحة الرئيسية">
+      
+      {{i:m-mark}}<span class="logo-word">موظف <span class="logo-ai">AI</span></span>
+    </a>
+    <nav class="nav-links" aria-label="القائمة الرئيسية">
+      <a href="/#services" data-nav="services">الخدمات</a>
+      <a href="/#work" data-nav="work">نماذج من شغلنا</a>
+      <a href="/#process" data-nav="process">كيف بنشتغل</a>
+      <a href="/#faq" data-nav="faq">الأسئلة الشائعة</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="icon-btn lang-btn" href="{{SWITCH_PATH}}" hreflang="en" lang="en" aria-label="English version">EN</a>
+      <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="تبديل الوضع الليلي">
+        <svg class="i-moon" aria-hidden="true"><use href="/assets/img/icons.svg#moon"/></svg>
+        <svg class="i-sun" aria-hidden="true"><use href="/assets/img/icons.svg#sun"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm nav-cta" href="wa:مرحبا، بدي أحجز استشارة مجانية مع موظف AI" data-wa="header" target="_blank" rel="noopener">احجز استشارة مجانية</a>
+      <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false" aria-label="القائمة">
+        <svg class="i-menu" aria-hidden="true"><use href="/assets/img/icons.svg#menu"/></svg>
+        <svg class="i-close" aria-hidden="true"><use href="/assets/img/icons.svg#close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="قائمة الموبايل">
+  <a href="/#services">الخدمات</a>
+  <a href="/#work">نماذج من شغلنا</a>
+  <a href="/#process">كيف بنشتغل</a>
+  <a href="/#faq">الأسئلة الشائعة</a>
+  <a class="btn btn-primary btn-block" href="wa:مرحبا، بدي أحجز استشارة مجانية مع موظف AI" data-wa="mobile-menu" target="_blank" rel="noopener">{{i:whatsapp}} احجز استشارة مجانية</a>
+</nav>

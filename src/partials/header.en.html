@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="container nav">
+    <a class="logo" href="/en/" aria-label="Mowazef AI — home">
+      
+      {{i:m-mark}}<span class="logo-word logo-word--en">MOWAZEFAI</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="/en/#services" data-nav="services">Services</a>
+      <a href="/en/#work" data-nav="work">Our work</a>
+      <a href="/en/#process" data-nav="process">How we work</a>
+      <a href="/en/#faq" data-nav="faq">FAQ</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="icon-btn lang-btn" href="{{SWITCH_PATH}}" hreflang="ar" lang="ar" aria-label="النسخة العربية">عربي</a>
+      <button class="icon-btn theme-btn" type="button" data-theme-toggle aria-label="Toggle dark mode">
+        <svg class="i-moon" aria-hidden="true"><use href="/assets/img/icons.svg#moon"/></svg>
+        <svg class="i-sun" aria-hidden="true"><use href="/assets/img/icons.svg#sun"/></svg>
+      </button>
+      <a class="btn btn-primary btn-sm nav-cta" href="wa:Hi, I'd like to book a free consultation with Mowazef AI" data-wa="header" target="_blank" rel="noopener">Book a free consultation</a>
+      <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-controls="mobile-menu" aria-expanded="false" aria-label="Menu">
+        <svg class="i-menu" aria-hidden="true"><use href="/assets/img/icons.svg#menu"/></svg>
+        <svg class="i-close" aria-hidden="true"><use href="/assets/img/icons.svg#close"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<nav class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+  <a href="/en/#services">Services</a>
+  <a href="/en/#work">Our work</a>
+  <a href="/en/#process">How we work</a>
+  <a href="/en/#faq">FAQ</a>
+  <a class="btn btn-primary btn-block" href="wa:Hi, I'd like to book a free consultation with Mowazef AI" data-wa="mobile-menu" target="_blank" rel="noopener">{{i:whatsapp}} Book a free consultation</a>
+</nav>
