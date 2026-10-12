@@ -31,11 +31,11 @@
 <meta name="twitter:description" content="{{DESC}}">
 <meta name="twitter:image" content="{{SITE}}/assets/img/og-{{LANG}}.jpg">
 
-<script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light'){t='light'}d.setAttribute('data-theme',t);d.classList.add('js');try{if(sessionStorage.getItem('intro')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('intro-seen')}else{sessionStorage.setItem('intro','1');d.classList.add('intro-on')}}catch(e){d.classList.add('intro-seen')}if(t==='dark'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#0B0B0C')}})();</script>
+<script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light'){t='light'}d.setAttribute('data-theme',t);d.classList.add('js');d.classList.add('fonts-pending');var done=function(){d.classList.remove('fonts-pending')};setTimeout(done,3000);window.__fontsCss=function(){if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('500 1em "Readex Pro"'),document.fonts.load('300 1em "Readex Pro"')]).then(done,done)}else{done()}};try{if(sessionStorage.getItem('intro')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('intro-seen')}else{sessionStorage.setItem('intro','1');d.classList.add('intro-on')}}catch(e){d.classList.add('intro-seen')}if(t==='dark'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#0B0B0C')}})();</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="{{FONTS}}" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="{{FONTS}}" onload="this.onload=null;this.rel='stylesheet';window.__fontsCss&&window.__fontsCss()">
 <noscript><link rel="stylesheet" href="{{FONTS}}"></noscript>
 <style>{{CSS}}</style>
 <script src="/assets/js/site.js?v={{VERSION}}" defer></script>

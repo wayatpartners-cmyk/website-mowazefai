@@ -871,3 +871,14 @@ html[data-theme="light"] .intro-m path + path { stroke: #8C7647; }
 /* Light hero: soft warm wash instead of flat white */
 html[data-theme="light"] .hero, html[data-theme="light"] .page-hero { background: radial-gradient(80% 70% at 15% 20%, #F6F2EA, transparent 70%), #FFFFFF; }
 html[data-theme="light"] .marquee { background: #FBFAF7; }
+
+/* Zero layout shift in the hero chat: every message keeps its space from the
+   first paint and only fades in; the typing dots float instead of taking room. */
+.chat-body { position: relative; padding-block-end: 58px; }
+.chat.is-playing .msg { display: block; opacity: 0; transform: translateY(6px); }
+.chat.is-playing .msg.is-shown { animation: msgIn .35s var(--ease) both; }
+.typing { position: absolute; inset-inline-start: 16px; bottom: 14px; display: flex; opacity: 0; transition: opacity .2s; }
+.chat.is-playing .typing.is-shown { opacity: 1; }
+/* Hold the page (not the intro) until Readex Pro is ready, so the font swap
+   never shifts the layout. A 3s timeout in <head> always releases it. */
+html.fonts-pending .site-header, html.fonts-pending main, html.fonts-pending .site-footer, html.fonts-pending .wa-float { visibility: hidden; }
