@@ -18,7 +18,7 @@ export LC_ALL=C.UTF-8 2>/dev/null || true
 cd "$(dirname "$0")"
 
 # ---- Site settings (change contact details here only) ----
-SITE="https://mowazefai.com"
+SITE="https://www.mowazefai.com"
 WA_NUMBER="96265236672"
 PHONE_DISPLAY="+962 6 523 6672"
 PHONE_TEL="+96265236672"
@@ -119,7 +119,7 @@ $(cat "src/partials/footer.$lang.html")"
 
   case "$path" in
     /) out="index.html" ;;
-    /en/) out="en/index.html" ;;
+    /en) out="en/index.html" ;;
     /404) out="404.html" ;;
     *) out="${path#/}.html" ;;
   esac
