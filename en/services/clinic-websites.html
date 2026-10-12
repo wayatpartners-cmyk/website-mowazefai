@@ -10,7 +10,7 @@
 <link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/services/clinic-websites">
 <link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/services/clinic-websites">
 <meta name="robots" content="index, follow">
-<meta name="theme-color" content="#0B0B0C">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark">
 <meta name="format-detection" content="telephone=no">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -31,7 +31,7 @@
 <meta name="twitter:description" content="A website for dental, cosmetic and medical clinics: fast on mobile, one-tap WhatsApp booking, linked to Google Maps and built to rank on Google. Delivered in 7 days.">
 <meta name="twitter:image" content="https://www.mowazefai.com/assets/img/og-en.jpg">
 
-<script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light'){t='dark'}d.setAttribute('data-theme',t);d.classList.add('js');try{if(sessionStorage.getItem('intro')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('intro-seen')}else{sessionStorage.setItem('intro','1');d.classList.add('intro-on')}}catch(e){d.classList.add('intro-seen')}if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#FFFFFF')}})();</script>
+<script>(function(){var d=document.documentElement,t;try{t=localStorage.getItem('theme')}catch(e){}if(t!=='dark'&&t!=='light'){t='light'}d.setAttribute('data-theme',t);d.classList.add('js');try{if(sessionStorage.getItem('intro')||matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('intro-seen')}else{sessionStorage.setItem('intro','1');d.classList.add('intro-on')}}catch(e){d.classList.add('intro-seen')}if(t==='dark'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#0B0B0C')}})();</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -68,7 +68,7 @@
 --header-bg: rgba(11, 11, 12, .78);
 color-scheme: dark;
 }
-html[data-theme="light"], .section--invert {
+html[data-theme="light"], html:not([data-theme="light"]) .section--invert {
 --bg: #FFFFFF;
 --bg-2: #F4F3F0;
 --panel: #FFFFFF;
@@ -755,8 +755,25 @@ html.js [data-wipe] > * { transform: none; }
 html.js [data-split] .wi { filter: none; opacity: 1; }
 .cursor, .cursor-dot { display: none; }
 }
-html[dir="rtl"].js [data-split].is-in .wi { transform: none; filter: none; opacity: 1; }</style>
-<script src="/assets/js/site.js?v=202610122149" defer></script>
+html[dir="rtl"].js [data-split].is-in .wi { transform: none; filter: none; opacity: 1; }
+html[data-theme="light"] .section--invert {
+--bg: #0B0B0C; --bg-2: #111113; --panel: #161618; --panel-2: #1C1C1F;
+--text: #F5F3EF; --muted: #A19D97; --faint: #8F8B85;
+--line: rgba(245, 243, 239, .09); --line-strong: rgba(245, 243, 239, .20);
+--gold: #C8B48A; --gold-line: rgba(200, 180, 138, .42);
+--teal: #EDE9E1; --teal-ink: #0B0B0C; --teal-text: #D9C79F;
+--btn-bg: #C8B48A; --btn-text: #0B0B0C; --btn-hover: #DCCBA3;
+color-scheme: dark;
+}
+html[data-theme="light"] .section--invert .laptop-base { background: linear-gradient(#3C3C40, #1E1E21); }
+html[data-theme="light"].intro-on .intro { background: #FFFFFF; }
+html[data-theme="light"] .intro-m path { stroke: #0B0B0C; }
+html[data-theme="light"] .intro-m path:first-child { animation-name: introDraw, introFillInk; }
+html[data-theme="light"] .intro-m path + path { stroke: #8C7647; }
+@keyframes introFillInk { to { fill: #0B0B0C; } }
+html[data-theme="light"] .hero, html[data-theme="light"] .page-hero { background: radial-gradient(80% 70% at 15% 20%, #F6F2EA, transparent 70%), #FFFFFF; }
+html[data-theme="light"] .marquee { background: #FBFAF7; }</style>
+<script src="/assets/js/site.js?v=202610122151" defer></script>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><svg class="intro-m" viewBox="-6 -6 394 371"><path pathLength="1" d="M19 0L191 188L364 0V334H382V359H299V334H316V122L191 257L67 122V334H84V359H0V334H19Z"/><path pathLength="1" d="M191 281L229 319L191 357L153 319Z"/></svg></div>

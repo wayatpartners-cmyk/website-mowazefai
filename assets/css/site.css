@@ -39,7 +39,7 @@
   color-scheme: dark;
 }
 
-html[data-theme="light"], .section--invert {
+html[data-theme="light"], html:not([data-theme="light"]) .section--invert {
   --bg: #FFFFFF;
   --bg-2: #F4F3F0;
   --panel: #FFFFFF;
@@ -848,3 +848,26 @@ html.has-cursor, html.has-cursor a, html.has-cursor button, html.has-cursor summ
   .cursor, .cursor-dot { display: none; }
 }
 html[dir="rtl"].js [data-split].is-in .wi { transform: none; filter: none; opacity: 1; }
+
+/* Light is the default theme: the "work" section flips to dark for contrast. */
+html[data-theme="light"] .section--invert {
+  --bg: #0B0B0C; --bg-2: #111113; --panel: #161618; --panel-2: #1C1C1F;
+  --text: #F5F3EF; --muted: #A19D97; --faint: #8F8B85;
+  --line: rgba(245, 243, 239, .09); --line-strong: rgba(245, 243, 239, .20);
+  --gold: #C8B48A; --gold-line: rgba(200, 180, 138, .42);
+  --teal: #EDE9E1; --teal-ink: #0B0B0C; --teal-text: #D9C79F;
+  --btn-bg: #C8B48A; --btn-text: #0B0B0C; --btn-hover: #DCCBA3;
+  color-scheme: dark;
+}
+html[data-theme="light"] .section--invert .laptop-base { background: linear-gradient(#3C3C40, #1E1E21); }
+
+/* Intro follows the theme */
+html[data-theme="light"].intro-on .intro { background: #FFFFFF; }
+html[data-theme="light"] .intro-m path { stroke: #0B0B0C; }
+html[data-theme="light"] .intro-m path:first-child { animation-name: introDraw, introFillInk; }
+html[data-theme="light"] .intro-m path + path { stroke: #8C7647; }
+@keyframes introFillInk { to { fill: #0B0B0C; } }
+
+/* Light hero: soft warm wash instead of flat white */
+html[data-theme="light"] .hero, html[data-theme="light"] .page-hero { background: radial-gradient(80% 70% at 15% 20%, #F6F2EA, transparent 70%), #FFFFFF; }
+html[data-theme="light"] .marquee { background: #FBFAF7; }
