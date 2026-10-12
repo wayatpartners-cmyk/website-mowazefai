@@ -4,7 +4,19 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/index", "destination": "/", "permanent": true },
-    { "source": "/mowazafai-landing", "destination": "/", "permanent": true }
+    { "source": "/mowazafai-landing", "destination": "/", "permanent": true },
+    { "source": "/mowazafai-site", "destination": "/", "permanent": true },
+    { "source": "/mowazafai-site/:path*", "destination": "/", "permanent": true },
+    { "source": "/(ar|home|main|arabic)", "destination": "/", "permanent": true },
+    { "source": "/(english|en-us|en-gb)", "destination": "/en", "permanent": true },
+    { "source": "/services", "destination": "/#services", "permanent": false },
+    { "source": "/en/services", "destination": "/en#services", "permanent": false },
+    { "source": "/(contact|about)", "destination": "/", "permanent": false },
+    { "source": "/en/(contact|about)", "destination": "/en", "permanent": false },
+    { "source": "/faq", "destination": "/#faq", "permanent": false },
+    { "source": "/en/faq", "destination": "/en#faq", "permanent": false },
+    { "source": "/work", "destination": "/#work", "permanent": false },
+    { "source": "/en/work", "destination": "/en#work", "permanent": false }
   ],
   "headers": [
     {
