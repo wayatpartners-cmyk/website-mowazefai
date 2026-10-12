@@ -10,9 +10,9 @@
 
   var root = document.documentElement;
   var rtl = root.dir === 'rtl';
-  var introDelay = root.classList.contains('intro-on') ? 1500 : 0;
+  var introDelay = root.classList.contains('intro-on') ? 1100 : 0;
   // Remove the opening intro overlay once its curtain animation has finished.
-  setTimeout(function () { var intro = document.querySelector('.intro'); if (intro) intro.remove(); }, introDelay ? 2700 : 0);
+  setTimeout(function () { var intro = document.querySelector('.intro'); if (intro) intro.remove(); }, introDelay ? 2000 : 0);
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   var $ = function (s, c) { return (c || document).querySelector(s); };

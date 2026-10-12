@@ -21,7 +21,7 @@
   --panel-2: #1C1C1F;
   --text: #F5F3EF;
   --muted: #A19D97;
-  --faint: #7C7873;
+  --faint: #8F8B85;
   --line: rgba(245, 243, 239, .09);
   --line-strong: rgba(245, 243, 239, .20);
   --gold: #C8B48A;
@@ -46,7 +46,7 @@ html[data-theme="light"], .section--invert {
   --panel-2: #F7F6F3;
   --text: #0B0B0C;
   --muted: #5F5B56;
-  --faint: #77736E;
+  --faint: #6B6762;
   --line: rgba(11, 11, 12, .10);
   --line-strong: rgba(11, 11, 12, .22);
   --gold: #8C7647;
@@ -210,7 +210,7 @@ html.js .hero .chat-wrap { animation: rise 1s .3s var(--ease) both; }
 .msg time { display: block; font-size: .7rem; color: var(--faint); margin-block-start: 4px; text-align: end; }
 .msg-in { align-self: flex-start; background: var(--bubble-in); border: 1px solid var(--line); border-start-start-radius: 4px; }
 .msg-out { align-self: flex-end; background: var(--bubble-out); color: var(--bubble-out-text); border-start-end-radius: 4px; }
-.msg-out time { color: inherit; opacity: .7; }
+.msg-out time { color: inherit; opacity: .85; }
 .msg-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-block-start: 10px; }
 .msg-chips span { font-size: .8rem; padding: 4px 11px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--teal) 55%, transparent); color: var(--teal-text); }
 .typing { align-self: flex-start; display: none; gap: 4px; padding: 13px 15px; background: var(--bubble-in); border: 1px solid var(--line); border-radius: 14px; border-start-start-radius: 4px; }
@@ -342,7 +342,7 @@ html[lang="en"] .cta-band h2 { letter-spacing: -.035em; }
 .footer-grid { display: grid; gap: 40px; }
 @media (min-width: 800px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 1.1fr; } }
 .footer-about p { color: var(--muted); font-size: .95rem; margin-block-start: 16px; max-width: 34ch; }
-.footer-col h4 { font-family: var(--font-body); font-size: .9rem; font-weight: 500; margin-block-end: 16px; color: var(--faint); }
+.footer-col .footer-h { font-family: var(--font-body); font-size: .9rem; font-weight: 500; margin-block-end: 16px; color: var(--faint); }
 .footer-col ul { display: grid; gap: 10px; }
 .footer-col a { color: var(--text); font-size: .95rem; opacity: .85; transition: opacity .2s, color .2s; }
 .footer-col a:hover { opacity: 1; color: var(--teal-text); }
@@ -524,7 +524,7 @@ html[data-theme="light"] .fcard { background: rgba(255, 255, 255, .82); border-c
 .scrub { font-family: var(--font-head); font-weight: 400; font-size: clamp(1.7rem, 4.4vw, 3.4rem); line-height: 1.65; max-width: 30ch; margin-block-end: clamp(56px, 8vw, 96px); }
 html[lang="en"] .scrub { line-height: 1.22; letter-spacing: -.02em; max-width: 26ch; }
 .scrub .w { overflow: visible; }
-.scrub .wi { opacity: .14; transition: opacity .35s linear; }
+.scrub .wi { opacity: .22; transition: opacity .35s linear; }
 .scrub .wi.on { opacity: 1; }
 .p-ico { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; margin-block-end: 22px; border: 1px solid var(--gold-line); color: var(--teal-text); }
 .p-ico svg { width: 24px; height: 24px; stroke-dasharray: 90; stroke-dashoffset: 90; transition: stroke-dashoffset 1.6s .3s var(--ease); }
@@ -790,11 +790,11 @@ html[data-theme="light"] .stage-glow { background: radial-gradient(closest-side,
 html.js.intro-on .intro {
   position: fixed; inset: 0; z-index: 200; display: grid; place-items: center;
   background: #0B0B0C; pointer-events: none;
-  animation: introLift 1s 1.55s cubic-bezier(.76, 0, .24, 1) forwards;
+  animation: introLift .8s 1.1s cubic-bezier(.76, 0, .24, 1) forwards;
 }
 .intro-m { width: min(26vw, 140px); height: auto; overflow: visible; }
-.intro-m path { fill: transparent; stroke: #F5F3EF; stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; animation: introDraw 1s .1s cubic-bezier(.65, 0, .35, 1) forwards, introFill .45s 1s ease forwards; }
-.intro-m path + path { stroke: #C8B48A; animation-delay: .6s, 1.05s; }
+.intro-m path { fill: transparent; stroke: #F5F3EF; stroke-width: 1.5; vector-effect: non-scaling-stroke; stroke-dasharray: 1; stroke-dashoffset: 1; animation: introDraw .7s .05s cubic-bezier(.65, 0, .35, 1) forwards, introFill .35s .7s ease forwards; }
+.intro-m path + path { stroke: #C8B48A; animation-delay: .4s, .75s; }
 .intro-m path + path { animation-name: introDraw, introFillGold; }
 @keyframes introDraw { to { stroke-dashoffset: 0; } }
 @keyframes introFill { to { fill: #F5F3EF; } }
@@ -802,10 +802,10 @@ html.js.intro-on .intro {
 @keyframes introLift { to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
 html.js.intro-on .intro { clip-path: inset(0 0 0 0); }
 /* hero waits for the curtain */
-html.intro-on .hero [data-split] .wi { --d0: 1500ms; }
-html.intro-on .hero [data-reveal] { transition-delay: calc(var(--rd, 0ms) + 1500ms); }
-html.intro-on .hero .m-art path { animation-delay: 1.6s; }
-html.intro-on .hero .m-art path + path { animation-delay: 3s; }
+html.intro-on .hero [data-split] .wi { --d0: 1100ms; }
+html.intro-on .hero [data-reveal] { transition-delay: calc(var(--rd, 0ms) + 1100ms); }
+html.intro-on .hero .m-art path { animation-delay: 1.2s; }
+html.intro-on .hero .m-art path + path { animation-delay: 2.4s; }
 
 /* --- stronger word reveal: rise + blur to sharp --- */
 html.js [data-split] .wi { transform: translateY(115%) rotate(3deg); filter: blur(8px); opacity: 0; transition: transform 1.1s var(--ease), filter 1.1s var(--ease), opacity .8s ease; transition-delay: calc(var(--i, 0) * 55ms + var(--d0, 0ms)); }

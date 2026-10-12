@@ -24,6 +24,8 @@ PHONE_DISPLAY="+962 6 523 6672"
 PHONE_TEL="+96265236672"
 EMAIL="info@mowazefai.com"
 VERSION="$(date +%Y%m%d%H%M)"
+# Inlined into every page so the stylesheet never blocks first paint (comments and indentation stripped).
+CSS="$(perl -0pe 's|/\*.*?\*/||gs; s/^[ \t]+//mg; s/\n{2,}/\n/g' assets/css/site.css)"
 FONTS_AR="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap"
 FONTS_EN="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap"
 
@@ -97,6 +99,7 @@ $(cat "src/partials/footer.$lang.html")"
   sub page '{{PHONE_DISPLAY}}' "$PHONE_DISPLAY"
   sub page '{{PHONE_TEL}}' "$PHONE_TEL"
   sub page '{{VERSION}}' "$VERSION"
+  sub page '{{CSS}}' "$CSS"
   [[ -n "$nav" ]] && sub page "data-nav=\"$nav\"" "data-nav=\"$nav\" aria-current=\"page\""
 
   # href="wa:Message text" -> WhatsApp link with the message pre-filled

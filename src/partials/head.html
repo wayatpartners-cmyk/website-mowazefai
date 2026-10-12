@@ -35,8 +35,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{{FONTS}}">
-<link rel="stylesheet" href="/assets/css/site.css?v={{VERSION}}">
+<link rel="preload" as="style" href="{{FONTS}}" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{FONTS}}"></noscript>
+<style>{{CSS}}</style>
 <script src="/assets/js/site.js?v={{VERSION}}" defer></script>
 </head>
 <body>

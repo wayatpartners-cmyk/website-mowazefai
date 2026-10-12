@@ -4,15 +4,13 @@
       <div class="footer-about">
         <a class="logo" href="/">{{i:m-mark}}<span class="logo-word">موظف <span class="logo-ai">AI</span></span></a>
         <p>بنبني للعيادات والشركات الصغيرة مواقع إلكترونية وشات بوت رد آلي وأتمتة، عشان يجيهم عملاء أكثر ويوفروا وقتهم. من عمّان، الأردن.</p>
-        <!-- روابط السوشال: حطي الرابط داخل href وبيظهر الزر تلقائياً -->
         <div class="social">
-          <a aria-label="إنستغرام" target="_blank" rel="noopener">{{i:instagram}}</a>
-          <a aria-label="فيسبوك" target="_blank" rel="noopener">{{i:facebook}}</a>
-          <a aria-label="لينكدإن" target="_blank" rel="noopener">{{i:linkedin}}</a>
+          <a href="https://www.linkedin.com/in/aya-al-zboun/" target="_blank" rel="noopener" aria-label="لينكدإن آية الزبون">{{i:linkedin}}</a>
         </div>
+        <!-- لإضافة إنستغرام أو فيسبوك: انسخي سطر <a> فوق وحطي الرابط الحقيقي. لا تتركي <a> بدون href. -->
       </div>
       <div class="footer-col">
-        <h4>الخدمات</h4>
+        <p class="footer-h">الخدمات</p>
         <ul>
           <li><a href="/services/clinic-websites">مواقع العيادات</a></li>
           <li><a href="/services/business-websites">مواقع الشركات</a></li>
@@ -21,7 +19,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>الشركة</h4>
+        <p class="footer-h">الشركة</p>
         <ul>
           <li><a href="/#work">نماذج من شغلنا</a></li>
           <li><a href="/#process">كيف بنشتغل</a></li>
@@ -30,7 +28,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>تواصل معنا</h4>
+        <p class="footer-h">تواصل معنا</p>
         <ul>
           <li><a href="wa:مرحبا موظف AI" data-wa="footer" target="_blank" rel="noopener">واتساب: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
           <li><a href="mailto:{{EMAIL}}"><bdi>{{EMAIL}}</bdi></a></li>
@@ -64,8 +62,9 @@
   "telephone": "{{PHONE_TEL}}",
   "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
   "areaServed": { "@type": "Country", "name": "Jordan" },
-  "founder": { "@type": "Person", "name": "آية الزبون", "alternateName": "Aya Al-Zaboun" },
-  "knowsLanguage": ["ar", "en"]
+  "founder": { "@type": "Person", "name": "آية الزبون", "alternateName": "Aya Al-Zboun" },
+  "knowsLanguage": ["ar", "en"],
+  "sameAs": ["https://www.linkedin.com/in/aya-al-zboun/"]
 }
 </script>
 </body>
