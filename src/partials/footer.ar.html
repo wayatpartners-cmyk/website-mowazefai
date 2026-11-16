@@ -2,8 +2,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <a class="logo" href="/">{{i:m-mark}}<span class="logo-word">موظف <span class="logo-ai">AI</span></span></a>
-        <p>بنبني للعيادات والشركات الصغيرة مواقع إلكترونية وشات بوت رد آلي وأتمتة، عشان يجيهم عملاء أكثر ويوفروا وقتهم. من عمّان، الأردن.</p>
+        <a class="logo" href="/">{{i:m-mark}}<span>موظف <span class="logo-ai">AI</span></span></a>
+        <p>شركة تصميم وبرمجة مواقع في الأردن. بنبني مواقع سريعة ومهيّأة لمحركات البحث (SEO)، وشات بوت واتساب، وأتمتة أعمال للعيادات والشركات. من عمّان.</p>
         <div class="social">
           <a href="https://www.linkedin.com/in/aya-al-zboun/" target="_blank" rel="noopener" aria-label="لينكدإن آية الزبون">{{i:linkedin}}</a>
         </div>
@@ -28,12 +28,22 @@
         </ul>
       </div>
       <div class="footer-col">
+        <p class="footer-h">مناطق نخدمها</p>
+        <ul>
+          <li><span>تصميم مواقع في عمّان</span></li>
+          <li><span>تصميم مواقع في إربد</span></li>
+          <li><span>تصميم مواقع في الزرقاء</span></li>
+          <li><span>تصميم مواقع في العقبة</span></li>
+          <li><span>السعودية والخليج عن بُعد</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <p class="footer-h">تواصل معنا</p>
         <ul>
           <li><a href="wa:مرحبا موظف AI" data-wa="footer" target="_blank" rel="noopener">واتساب: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
           <li><a href="mailto:{{EMAIL}}"><bdi>{{EMAIL}}</bdi></a></li>
           <li><a href="tel:{{PHONE_TEL}}">اتصال: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
-          <li><span style="color:var(--muted);font-size:.94rem">عمّان، الأردن</span></li>
+          <li><span>عمّان، الأردن</span></li>
         </ul>
       </div>
     </div>
@@ -61,7 +71,9 @@
   "email": "{{EMAIL}}",
   "telephone": "{{PHONE_TEL}}",
   "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
-  "areaServed": { "@type": "Country", "name": "Jordan" },
+  "areaServed": [{ "@type": "Country", "name": "Jordan" }, { "@type": "City", "name": "Amman" }, { "@type": "City", "name": "Irbid" }, { "@type": "City", "name": "Zarqa" }, { "@type": "City", "name": "Aqaba" }, { "@type": "Country", "name": "Saudi Arabia" }],
+  "priceRange": "$$",
+  "knowsAbout": ["تصميم مواقع", "تحسين محركات البحث SEO", "شات بوت واتساب", "أتمتة الأعمال", "Web Design", "Search Engine Optimization"],
   "founder": { "@type": "Person", "name": "آية الزبون", "alternateName": "Aya Al-Zboun" },
   "knowsLanguage": ["ar", "en"],
   "sameAs": ["https://www.linkedin.com/in/aya-al-zboun/"]

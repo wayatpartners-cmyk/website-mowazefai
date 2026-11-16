@@ -26,8 +26,8 @@ EMAIL="info@mowazefai.com"
 VERSION="$(date +%Y%m%d%H%M)"
 # Inlined into every page so the stylesheet never blocks first paint (comments and indentation stripped).
 CSS="$(perl -0pe 's|/\*.*?\*/||gs; s/^[ \t]+//mg; s/\n{2,}/\n/g' assets/css/site.css)"
-FONTS_AR="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap"
-FONTS_EN="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&display=swap"
+FONTS_AR="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap"
+FONTS_EN="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Manrope:wght@300;400;500;600;700&display=swap"
 
 meta() { sed -n "s/^$1: //p" "$2" | head -1 | tr -d '\r'; }
 

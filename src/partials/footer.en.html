@@ -2,8 +2,8 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-about">
-        <a class="logo" href="/en">{{i:m-mark}}<span class="logo-word logo-word--en">MOWAZEFAI</span></a>
-        <p>We build websites, auto-reply chatbots and automations for clinics and small businesses, so they win more customers and save time. Based in Amman, Jordan.</p>
+        <a class="logo" href="/en">{{i:m-mark}}<span>Mowazef <span class="logo-ai">AI</span></span></a>
+        <p>A web design and development agency in Jordan. We build fast, SEO-ready websites, WhatsApp chatbots and business automation for clinics and companies. Based in Amman.</p>
         <div class="social">
           <a href="https://www.linkedin.com/in/aya-al-zboun/" target="_blank" rel="noopener" aria-label="Aya Al-Zboun on LinkedIn">{{i:linkedin}}</a>
         </div>
@@ -28,12 +28,22 @@
         </ul>
       </div>
       <div class="footer-col">
+        <p class="footer-h">Areas we serve</p>
+        <ul>
+          <li><span>Web design in Amman</span></li>
+          <li><span>Web design in Irbid</span></li>
+          <li><span>Web design in Zarqa</span></li>
+          <li><span>Web design in Aqaba</span></li>
+          <li><span>Saudi Arabia &amp; GCC, remotely</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <p class="footer-h">Contact</p>
         <ul>
           <li><a href="wa:Hi Mowazef AI" data-wa="footer" target="_blank" rel="noopener">WhatsApp: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
           <li><a href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
           <li><a href="tel:{{PHONE_TEL}}">Call: <bdi>{{PHONE_DISPLAY}}</bdi></a></li>
-          <li><span style="color:var(--muted);font-size:.94rem">Amman, Jordan</span></li>
+          <li><span>Amman, Jordan</span></li>
         </ul>
       </div>
     </div>
@@ -61,7 +71,9 @@
   "email": "{{EMAIL}}",
   "telephone": "{{PHONE_TEL}}",
   "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
-  "areaServed": { "@type": "Country", "name": "Jordan" },
+  "areaServed": [{ "@type": "Country", "name": "Jordan" }, { "@type": "City", "name": "Amman" }, { "@type": "City", "name": "Irbid" }, { "@type": "City", "name": "Zarqa" }, { "@type": "City", "name": "Aqaba" }, { "@type": "Country", "name": "Saudi Arabia" }],
+  "priceRange": "$$",
+  "knowsAbout": ["Web Design", "Search Engine Optimization", "WhatsApp chatbots", "Business automation"],
   "founder": { "@type": "Person", "name": "Aya Al-Zboun", "alternateName": "آية الزبون" },
   "knowsLanguage": ["ar", "en"],
   "sameAs": ["https://www.linkedin.com/in/aya-al-zboun/"]
