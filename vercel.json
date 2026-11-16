@@ -4,6 +4,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/index", "destination": "/", "permanent": true },
+    { "source": "/services/clinic-websites", "destination": "/services/chatbot", "permanent": true },
+    { "source": "/en/services/clinic-websites", "destination": "/en/services/chatbot", "permanent": true },
     { "source": "/mowazafai-landing", "destination": "/", "permanent": true },
     { "source": "/mowazafai-site", "destination": "/", "permanent": true },
     { "source": "/mowazafai-site/:path*", "destination": "/", "permanent": true },

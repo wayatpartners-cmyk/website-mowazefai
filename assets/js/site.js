@@ -39,7 +39,8 @@
   onScroll();
 
   // ---- Reveal on scroll -----------------------------------------------
-  var revealSel = '.section-head, .svc, .step, .plan, .why-item, .feature, .case-media, .case-copy, .scores, .seo-list li, .faq details, .related a, .cta-band, .founder';
+  var revealSel = '.section-head, .svc, .step, .plan, .why-item, .feature, .use, .int-cat, .crm-card, .seo-list li, .faq details, .related a, .cta-band, .founder';
+  setTimeout(function () { var it = document.querySelector('.intro'); if (it) it.remove(); root.classList.remove('intro-on'); }, root.classList.contains('intro-on') ? 2700 : 0);
   var els = $$(revealSel).filter(function (el) { return !el.closest('.hero'); });
   els.forEach(function (el) {
     el.setAttribute('data-reveal', '');
