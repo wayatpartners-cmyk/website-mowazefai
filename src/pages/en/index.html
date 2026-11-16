@@ -13,7 +13,7 @@ alt: /
       <h1 class="hero-title" data-hero style="--d:.08s">A chatbot built around your business, <em>wired into your CRM.</em></h1>
       <p class="hero-sub" data-hero style="--d:.16s">Not an off-the-shelf bot with canned replies. For every client we build a digital employee trained on their services, prices and workflow. It answers on WhatsApp, Instagram, Messenger, your website and even phone calls 24/7, and writes every lead, order and booking straight into your system.</p>
       <div class="btn-row" data-hero style="--d:.24s">
-        <a class="btn btn-primary" href="wa:Hi, I'd like to book a discovery call for a custom chatbot" data-wa="hero" target="_blank" rel="noopener">Book a discovery call {{if:arrow}}</a>
+        <a class="btn btn-primary" href="{{BOOKING}}" data-book="hero" target="_blank" rel="noopener">Book a discovery call {{if:arrow}}</a>
         <a class="btn btn-ghost" href="#usecases">See what it can do</a>
       </div>
       <div class="hero-proof" data-hero style="--d:.32s">
@@ -103,13 +103,6 @@ alt: /
         <div><p>Automatic follow-ups for customers who went quiet, appointment reminders, instant alerts for your sales team, and weekly reports on conversations and conversions.</p><div class="tags"><span>Follow-up</span><span>Alerts</span><span>Reports</span></div></div>
         <span class="svc-go">{{if:arrow}}</span>
         <a class="cover" href="/en/services/automation" aria-label="Automation details"></a>
-      </article>
-      <article class="svc">
-        <span class="svc-num">05</span>
-        <h3>Websites wired to the bot<small>SEO-ready landing pages and company sites</small></h3>
-        <div><p>Need a front door too? We build a fast, search-optimized site with the bot built in and connected to the same CRM, so every visitor becomes an opportunity.</p><div class="tags"><span>SEO</span><span>Bilingual</span><span>Landing pages</span></div></div>
-        <span class="svc-go">{{if:arrow}}</span>
-        <a class="cover" href="/en/services/business-websites" aria-label="Website details"></a>
       </article>
     </div>
   </div>
@@ -313,10 +306,10 @@ alt: /
     <h2>Ready for an employee who never sleeps?</h2>
     <p>Book a free discovery call and we'll map the right bot and integrations for your business, with a clear quote.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="wa:Hi, I'd like to book a discovery call for a custom chatbot" data-wa="final-cta" target="_blank" rel="noopener">{{i:whatsapp}} Book a discovery call</a>
-      <a class="btn btn-ghost" href="mailto:{{EMAIL}}">Email us</a>
+      <a class="btn btn-primary" href="{{BOOKING}}" data-book="final-cta" target="_blank" rel="noopener">{{i:calendar}} Book a discovery call</a>
+      <a class="btn btn-ghost" href="wa:Hi, I have a question about Mowazef AI" data-wa="final-cta" target="_blank" rel="noopener">{{i:whatsapp}} Or chat on WhatsApp</a>
     </div>
-    <small>Or call <bdi>{{PHONE_DISPLAY}}</bdi></small>
+    <small>Pick a time that suits you and get a Google Meet link by email instantly.</small>
   </div>
 </section>
 

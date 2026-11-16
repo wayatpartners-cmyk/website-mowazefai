@@ -23,6 +23,7 @@ WA_NUMBER="96265236672"
 PHONE_DISPLAY="+962 6 523 6672"
 PHONE_TEL="+96265236672"
 EMAIL="info@mowazefai.com"
+BOOKING_URL="https://calendar.app.google/QCg3ed2EMQw46RcA7"   # Google Calendar booking page (discovery call)
 VERSION="$(date +%Y%m%d%H%M)"
 # Inlined into every page so the stylesheet never blocks first paint (comments and indentation stripped).
 CSS="$(perl -0pe 's|/\*.*?\*/||gs; s/^[ \t]+//mg; s/\n{2,}/\n/g' assets/css/site.css)"
@@ -96,6 +97,7 @@ $(cat "src/partials/footer.$lang.html")"
   if [[ $lang == ar ]]; then sub page '{{SITE_NAME}}' "موظف AI"; else sub page '{{SITE_NAME}}' "Mowazef AI"; fi
   sub page '{{SITE}}' "$SITE"
   sub page '{{EMAIL}}' "$EMAIL"
+  sub page '{{BOOKING}}' "$BOOKING_URL"
   sub page '{{PHONE_DISPLAY}}' "$PHONE_DISPLAY"
   sub page '{{PHONE_TEL}}' "$PHONE_TEL"
   sub page '{{VERSION}}' "$VERSION"

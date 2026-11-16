@@ -143,6 +143,14 @@
     loadScript('/_vercel/insights/script.js');
   }
 
+  // Track discovery-call booking clicks (Google Calendar booking page).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-book]');
+    if (!a) return;
+    gtag('event', 'booking_click', { link_location: a.getAttribute('data-book'), page_path: location.pathname, page_language: root.lang });
+    if (window.va) window.va('event', { name: 'booking_click', data: { location: a.getAttribute('data-book') } });
+  });
+
   // Track every WhatsApp click with where it happened.
   document.addEventListener('click', function (e) {
     var a = e.target.closest('a[href*="wa.me/"]');
