@@ -6,54 +6,67 @@ alt: /en
 -->
 <main id="main">
 
-<!-- ============ HERO (story-first) ============ -->
-<section class="hero hero--story">
-  <div class="container story-hero">
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="container hero-grid">
     <div class="hero-copy">
-      <p class="hero-kicker" data-hero>آية الزبون <span aria-hidden="true">—</span> مؤسِّسة موظف AI، عمّان</p>
-      <h1 class="hero-title" data-hero style="--d:.08s">ولا عميل لازم يستنى للصبح عشان حدا يرد عليه.</h1>
-      <p class="hero-sub" data-hero style="--d:.16s">خلفيتي تمريض ومعلوماتية صحية، وشفت من جوّا كيف رسالة بلا رد أو مكالمة فايتة بتعني إنسان راح لمكان تاني. اليوم ببني لكل شركة موظف رقمي على مقاسها: بيرد على واتساب وإنستغرام والمكالمات بالعربي، وبيسجّل كل عميل بنظامك.</p>
+      <p class="hero-badge" data-hero><b>عمّان</b> شات بوت ذكاء اصطناعي · تكاملات CRM · أتمتة</p>
+      <h1 class="hero-title" data-hero style="--d:.08s">شات بوت مبني على مقاس شركتك، <em>ومربوط بالـ CRM تبعك.</em></h1>
+      <p class="hero-sub" data-hero style="--d:.16s">مش بوت جاهز بردود محفوظة. بنبني لكل عميل موظف رقمي مدرّب على خدماته وأسعاره وطريقة شغله، بيرد على واتساب وإنستغرام وماسنجر وموقعك وحتى المكالمات الهاتفية 24 ساعة، وبيكتب كل عميل وطلب وحجز مباشرة بنظامك.</p>
       <div class="btn-row" data-hero style="--d:.24s">
-        <a class="btn btn-primary" href="{{BOOKING}}" data-book="hero" target="_blank" rel="noopener">احجز جلسة تعريفية معي {{if:arrow}}</a>
-        <a class="btn btn-link" href="#story">اقرا القصة</a>
+        <a class="btn btn-primary" href="{{BOOKING}}" data-book="hero" target="_blank" rel="noopener">احجز جلسة تعريفية {{if:arrow}}</a>
+        <a class="btn btn-ghost" href="#usecases">شوف شو بيقدر يعمل</a>
+      </div>
+      <div class="hero-proof" data-hero style="--d:.32s">
+        <div><b>24/7</b><span>رد فوري بالعربي والإنجليزي</span></div>
+        <div><b><span data-count="100">100</span>%</b><span>مخصص لبياناتك وقواعدك</span></div>
+        <div><b>CRM</b><span>كل محادثة بتصير ليد أو طلب</span></div>
+        <div><b>1</b><span>صندوق وارد لكل القنوات</span></div>
       </div>
     </div>
 
-    <!-- الصورة: حطي صورتك بـ assets/img/aya.jpg (عمودية، تقريباً 900×1100) واستبدلي الـ div.portrait-ph بـ:
-         <img src="/assets/img/aya.jpg" alt="آية الزبون، مؤسِّسة موظف AI" width="900" height="1100"> -->
-    <figure class="portrait" data-hero style="--d:.2s">
-      <div class="portrait-ph" aria-hidden="true"><span>آ</span><small>صورة آية هون</small></div>
-      <figcaption><b>آية الزبون</b><span>بشتغل على كل مشروع بنفسي، من أول جلسة لآخر تعديل.</span></figcaption>
-    </figure>
+    <div class="visual">
+      <div class="flow" role="img" aria-label="رسم توضيحي: الرسائل بتوصل من واتساب وإنستغرام وماسنجر والموقع، موظف AI المدرّب على بيانات شركتك بيفهمها وبيرد، وبيسجّل النتيجة بالـ CRM كعميل محتمل أو طلب أو حجز أو تذكرة دعم">
+        <div class="flow-in" aria-hidden="true">
+          <p class="flow-h">القنوات</p>
+          <div>
+            <div class="node">{{i:whatsapp}} واتساب</div>
+            <div class="node">{{i:instagram}} إنستغرام</div>
+            <div class="node">{{i:messenger}} ماسنجر</div>
+            <div class="node">{{i:browser}} موقعك</div>
+            <div class="node">{{i:phone}} مكالمات</div>
+          </div>
+        </div>
+        <div class="core" aria-hidden="true">
+          <div class="core-logo">{{i:m-mark}}</div>
+          <p class="core-t">موظف AI</p>
+          <p class="core-s">مدرّب على بيانات شركتك</p>
+          <div class="core-chips"><span>معرفة</span><span>قواعد</span><span>ذاكرة</span><span>تحويل لموظف</span></div>
+        </div>
+        <div class="flow-out" aria-hidden="true">
+          <p class="flow-h">نظامك (CRM)</p>
+          <div>
+            <div class="node">{{i:users}} عميل محتمل <b>✓</b></div>
+            <div class="node">{{i:calendar}} حجز / موعد <b>✓</b></div>
+            <div class="node">{{i:store}} طلب جديد <b>✓</b></div>
+            <div class="node">{{i:file}} تذكرة دعم <b>✓</b></div>
+          </div>
+        </div>
+      </div>
+      <p class="flow-note">مثال توضيحي لطريقة العمل</p>
+    </div>
   </div>
 </section>
 
-<!-- ============ STORY ============ -->
-<section class="section section--ink" id="story">
-  <div class="container story">
-    <div class="story-head">
-      <p class="eyebrow">القصة</p>
-      <h2 class="h2">بلّشت من غرفة الانتظار، مش من شاشة كمبيوتر.</h2>
-    </div>
-    <ol class="story-steps">
-      <li>
-        <span class="story-n">01</span>
-        <h3>التمريض علّمني قيمة الرد</h3>
-        <p>أصعب إشي على أي حدا هو الانتظار: عنده سؤال، ومحتاج جواب، وما حدا بيرد. هاد الإحساس نفسه بيعيشه عميلك لما يبعت رسالة الساعة 11 بالليل.</p>
-      </li>
-      <li>
-        <span class="story-n">02</span>
-        <h3>المعلوماتية الصحية ورّتني وين بتضيع الأمور</h3>
-        <p>بيانات بين واتساب والورق والإكسل، مواعيد بتتنسى، وعملاء ما حدا رجع حكى معهم. المشكلة مش بالناس، المشكلة إنو ما في نظام بيمسك كل إشي.</p>
-      </li>
-      <li>
-        <span class="story-n">03</span>
-        <h3>فبنيت موظف AI</h3>
-        <p>موظف رقمي بيرد بسرعة وبلطف، بيعرف خدماتك وأسعارك، وبيكتب كل عميل وطلب وموعد بالمكان الصح. وإذا السؤال أكبر منه، بيحوّله لإنسان من فريقك.</p>
-      </li>
-    </ol>
+<!-- ============ INTEGRATIONS STRIP ============ -->
+<div class="strip">
+  <div class="container strip-inner">
+    <p class="strip-label">بنربط مع أنظمتك:</p>
+    <ul class="int-list">
+      <li>HubSpot</li><li>Zoho CRM</li><li>Salesforce</li><li>Odoo</li><li>Pipedrive</li><li>Google Sheets</li><li>Shopify</li><li>WooCommerce</li><li>Google Calendar</li>
+    </ul>
   </div>
-</section>
+</div>
 
 <!-- ============ WHAT WE BUILD ============ -->
 <section class="section" id="services">
@@ -85,7 +98,7 @@ alt: /en
           <div class="tags"><span>API</span><span>Webhooks</span><span>مزامنة لحظية</span></div>
         </div>
         <span class="svc-go">{{if:arrow}}</span>
-        <a class="cover" href="#stack" aria-label="تفاصيل تكاملات CRM"></a>
+        <a class="cover" href="#integrations" aria-label="تفاصيل تكاملات CRM"></a>
       </article>
       <article class="svc">
         <span class="svc-num">03</span>
@@ -95,7 +108,7 @@ alt: /en
           <div class="tags"><span>مكالمات واردة وصادرة</span><span>لهجات عربية</span><span>إعادة اتصال</span></div>
         </div>
         <span class="svc-go">{{if:arrow}}</span>
-        <a class="cover" href="/ai-voice-agent" aria-label="تفاصيل الوكيل الصوتي"></a>
+        <a class="cover" href="#usecases" aria-label="تفاصيل الوكيل الصوتي"></a>
       </article>
       <article class="svc">
         <span class="svc-num">04</span>
@@ -111,17 +124,47 @@ alt: /en
   </div>
 </section>
 
-
-<section class="section section--tint" id="solutions">
+<!-- ============ USE CASES + STACK ============ -->
+<section class="section section--tint" id="usecases">
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow">حلول حسب حاجتك</p>
-      <h2 class="h2">ابدأ من المكان اللي بيضيع فيه عملاءك.</h2>
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow">شو بيقدر يعمل</p>
+        <h2 class="h2">بيشغّل العملية كاملة، مش بس بيرد على الرسالة.</h2>
+      </div>
+      <p class="lead">موظف AI بيفهم شو بدو العميل، بيجيب البيانات من أنظمتك لحظياً، بينفّذ الإجراء داخل المحادثة، وبيكمّل المتابعة بعدها. على الشات أو على المكالمة.</p>
     </div>
-    <div class="related">
-      <a href="/whatsapp-chatbot-jordan"><strong>شات بوت واتساب للشركات في الأردن</strong><span>رد فوري على رسائل واتساب، تأهيل العملاء، وتسجيلهم بالـ CRM.</span></a>
-      <a href="/clinic-chatbot"><strong>شات بوت للعيادات وحجز المواعيد</strong><span>حجز وتعديل وتذكير المواعيد على واتساب وإنستغرام.</span></a>
-      <a href="/ai-voice-agent"><strong>وكيل صوتي ذكي للرد على المكالمات</strong><span>بيرد على التلفون بالعربي، بيحجز، وبيسجّل كل مكالمة.</span></a>
+    <div class="uses">
+      <article class="use">
+        <div class="use-ui" aria-hidden="true"><span class="ok">تم الحل</span><span>تذكرة جديدة</span><span class="ok">تم الحل</span><span class="blue">متابعة مرسلة</span></div>
+        <h3>خدمة العملاء والدعم</h3>
+        <p>بيرد على مئات الاستفسارات بنفس اللحظة: حالة الطلب، تحديث بيانات، مشاكل وشكاوى. بيحل اللي بقدر عليه، وبيفتح تذكرة أو بيحوّل لموظف للباقي.</p>
+      </article>
+      <article class="use">
+        <div class="use-ui" aria-hidden="true"><span>1,200 عميل محتمل</span><span class="blue">تأهيل تلقائي</span><span class="ok">اجتماع محجوز</span></div>
+        <h3>المبيعات وتأهيل العملاء</h3>
+        <p>بيسأل الأسئلة الصح، بيقيّم جدية العميل، بيرسل عرض السعر، وبيحجز اجتماع مع فريق المبيعات. والعميل المؤهّل بينزل مباشرة على الـ CRM.</p>
+      </article>
+      <article class="use">
+        <div class="use-ui" aria-hidden="true"><span class="blue">تذكير مرسل</span><span>موعد معدّل</span><span class="ok">حجز مؤكد</span></div>
+        <h3>الحجوزات والمواعيد</h3>
+        <p>حجز، تأكيد، تعديل، إلغاء، وتذكير قبل الموعد. كله مربوط بالتقويم ونظامك الداخلي، عشان تقل حالات الغياب وما يضيع موعد.</p>
+      </article>
+      <article class="use">
+        <div class="use-ui" aria-hidden="true"><span>طلب #2041</span><span class="blue">قيد التوصيل</span><span class="ok">تم التسليم</span></div>
+        <h3>الطلبات وتتبعها</h3>
+        <p>بياخد الطلب كامل من المحادثة، بيأكد التفاصيل، بيسجّله بالمتجر أو النظام، وبيرد على «وين طلبي؟» برقم الطلب وحالته الحقيقية.</p>
+      </article>
+      <article class="use">
+        <div class="use-ui" aria-hidden="true"><span>فاتورة مستحقة</span><span class="blue">تذكير تلقائي</span><span class="ok">رابط دفع مرسل</span></div>
+        <h3>التحصيل وتذكير الدفع</h3>
+        <p>تذكيرات دفع بأسلوب لطيف ومحترم، رابط دفع مباشر، وتسجيل الالتزام بالدفع، مع تحويل الحالات الحساسة لموظف من فريقك.</p>
+      </article>
+      <article class="use">
+        <div class="use-ui" aria-hidden="true"><span>غير نشط 6 شهور</span><span class="blue">عرض مخصص</span><span class="ok">رجع اشترى</span></div>
+        <h3>استرجاع العملاء والتجديد</h3>
+        <p>حملات متابعة للعملاء القدامى والصفقات اللي بردت، تذكير بالتجديد، وعروض حسب سلوك العميل، والرد المهتم بيتحوّل فوراً للمبيعات.</p>
+      </article>
     </div>
   </div>
 </section>
@@ -148,6 +191,33 @@ alt: /en
   </div>
 </section>
 
+<!-- ============ INTEGRATIONS / CUSTOMIZATION ============ -->
+<section class="section section--ink" id="integrations">
+  <div class="container seo-grid">
+    <div>
+      <p class="eyebrow">التخصيص والتكاملات</p>
+      <h2 class="h2">كل إشي بالبوت بيتعدّل على مقاسك.</h2>
+      <p class="lead">من نبرة الصوت لحد آخر حقل بالـ CRM. البوت بيشتغل بقواعدك إنت، وبيكتب بالمكان اللي فريقك بيشتغل منه أصلاً.</p>
+      <ul class="seo-list">
+        <li>{{i:layers}}<div><b>قاعدة معرفة خاصة فيك</b><span>خدماتك، أسعارك، سياساتك، والأسئلة المتكررة. البوت ما بيخترع جواب من عنده.</span></div></li>
+        <li>{{i:chat}}<div><b>شخصية ولهجة</b><span>أردني، خليجي، فصحى أو إنجليزي، رسمي أو ودود، حسب جمهورك.</span></div></li>
+        <li>{{i:shield}}<div><b>قواعد وحدود</b><span>شو يحكي وشو لا، متى يعطي سعر، ومتى يحوّل لموظف بشري.</span></div></li>
+        <li>{{i:plug}}<div><b>ربط بالـ CRM</b><span>حقول مخصصة، مراحل الصفقات، تعيين تلقائي للموظف المسؤول.</span></div></li>
+        <li>{{i:refresh}}<div><b>متابعات تلقائية</b><span>رسائل للعملاء اللي ما ردّوا، تذكيرات، وعروض حسب سلوك العميل.</span></div></li>
+        <li>{{i:gauge}}<div><b>لوحة تقارير</b><span>عدد المحادثات، العملاء المحتملين، نسب التحويل، وأكثر الأسئلة تكراراً.</span></div></li>
+      </ul>
+    </div>
+    <div class="crm-card" aria-hidden="true">
+      <div class="crm-head"><b>CRM · Leads</b><span>Live</span></div>
+      <div class="crm-row"><div><b>أحمد خالد</b><span>واتساب · شقة 3 غرف، عبدون</span></div><em>ليد مؤهّل</em></div>
+      <div class="crm-row"><div><b>سارة م.</b><span>إنستغرام · كورس تصميم، مسائي</span></div><em>تم التسجيل</em></div>
+      <div class="crm-row"><div><b>Omar R.</b><span>Website · Order #2041</span></div><em>طلب جديد</em></div>
+      <div class="crm-row"><div><b>ليلى ع.</b><span>ماسنجر · صيانة مكيف</span></div><em>تذكرة مفتوحة</em></div>
+      <div class="crm-foot"><span>تمت المزامنة تلقائياً من المحادثات</span><b>+4</b></div>
+      <small>مثال توضيحي، الأسماء غير حقيقية.</small>
+    </div>
+  </div>
+</section>
 
 <!-- ============ PROCESS ============ -->
 <section class="section" id="process">
@@ -214,6 +284,25 @@ alt: /en
   </div>
 </section>
 
+<!-- ============ WHY ============ -->
+<section class="section" id="why">
+  <div class="container why">
+    <div class="founder">
+      <p class="eyebrow">ليش موظف AI</p>
+      <blockquote>كل شركة إلها طريقة شغل مختلفة. عشان هيك ما بنبيع بوت جاهز، بنبني موظف رقمي بيشتغل بطريقتك إنت.</blockquote>
+      <div class="founder-by">
+        <span class="founder-mono" aria-hidden="true">آ</span>
+        <div><b>آية الزبون</b><span>المؤسِّسة، موظف AI</span></div>
+      </div>
+    </div>
+    <div class="why-list">
+      <div class="why-item">{{i:layers}}<div><h3>تخصيص حقيقي</h3><p>كل بوت مبني من الصفر على بياناتك وقواعدك، مش قالب بنغيّر فيه الاسم.</p></div></div>
+      <div class="why-item">{{i:plug}}<div><h3>مربوط بنظامك</h3><p>البوت بيكتب بالـ CRM اللي فريقك بيستخدمه، فما في بيانات ضايعة ولا شغل مكرر.</p></div></div>
+      <div class="why-item">{{i:chat}}<div><h3>بيحكي لغة عملاءك</h3><p>عربي بلهجات المنطقة وإنجليزي، بنبرة مناسبة لعلامتك التجارية.</p></div></div>
+      <div class="why-item">{{i:users}}<div><h3>فريق محلي بعمّان</h3><p>بنفهم السوق بالأردن والخليج، وبنرد عليك مباشرة على واتساب.</p></div></div>
+    </div>
+  </div>
+</section>
 
 <!-- ============ TESTIMONIALS (مخفي) ============
   هالقسم مخفي لحد ما يصير عندك آراء حقيقية.
@@ -270,13 +359,13 @@ alt: /en
 <!-- ============ FINAL CTA ============ -->
 <section class="container">
   <div class="cta-band">
-    <h2>احكيلي عن شغلك، وأنا بقلك شو ممكن ينحل.</h2>
-    <p>نص ساعة على Google Meet معي مباشرة. بنشوف وين بتضيع رسائل وعملاء عندك، وبطلع معك بخطة واضحة وعرض سعر، بدون أي التزام.</p>
+    <h2>جاهز يكون عندك موظف ما بينام؟</h2>
+    <p>احجز جلسة اكتشاف مجانية، وبنرسملك سيناريو البوت والتكاملات المناسبة لشركتك مع عرض سعر واضح.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="{{BOOKING}}" data-book="final-cta" target="_blank" rel="noopener">{{i:calendar}} احجز جلسة تعريفية</a>
-      <a class="btn btn-ghost" href="wa:مرحبا آية، عندي استفسار عن موظف AI" data-wa="final-cta" target="_blank" rel="noopener">{{i:whatsapp}} أو راسلني واتساب</a>
+      <a class="btn btn-primary" href="{{BOOKING}}" data-book="final-cta" target="_blank" rel="noopener">{{i:calendar}} احجز جلسة اكتشاف</a>
+      <a class="btn btn-ghost" href="wa:مرحبا، عندي استفسار عن موظف AI" data-wa="final-cta" target="_blank" rel="noopener">{{i:whatsapp}} أو احكي معنا واتساب</a>
     </div>
-    <small>بتختار الوقت اللي بناسبك، وبيوصلك رابط الاجتماع على إيميلك فوراً.</small>
+    <small>بتختار الوقت اللي بناسبك، وبيوصلك رابط Google Meet على إيميلك فوراً.</small>
   </div>
 </section>
 
