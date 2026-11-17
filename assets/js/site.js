@@ -3,7 +3,8 @@
   'use strict';
 
   // GA4 Measurement ID. Leave as-is until you have one.
-  var GA_ID = 'G-XXXXXXXXXX';
+  var gaMeta = document.querySelector('meta[name="ga-id"]');
+  var GA_ID = gaMeta ? gaMeta.content : ''; // set GA_ID in build.sh
   var PROD_HOST = /(^|\.)mowazefai\.com$/;
 
   var root = document.documentElement;
@@ -117,7 +118,7 @@
   window.gtag = window.gtag || gtag;
 
   var isProd = PROD_HOST.test(location.hostname);
-  var gaReady = /^G-[A-Z0-9]{6,}$/.test(GA_ID) && GA_ID !== 'G-XXXXXXXXXX';
+  var gaReady = /^G-[A-Z0-9]{6,}$/.test(GA_ID);
   var gaLoaded = false;
   function loadScript(src) {
     var s = document.createElement('script');
@@ -142,6 +143,27 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     loadScript('/_vercel/insights/script.js');
   }
+
+  // ---- Conversion events: Meta Pixel (Lead / Contact / Schedule) + GA4 generate_lead ----
+  function fb(ev, params) { if (typeof window.fbq === 'function') window.fbq('track', ev, params || {}); }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var where = a.getAttribute('data-wa') || a.getAttribute('data-book') || 'unknown';
+    var base = { link_location: where, page_path: location.pathname, page_language: root.lang };
+    if (/wa\.me\//.test(href)) {                 // WhatsApp, incl. every "request a quote" button
+      fb('Lead', { content_name: where });
+      gtag('event', 'generate_lead', Object.assign({ method: 'whatsapp' }, base));
+    } else if (a.hasAttribute('data-book')) {     // Google Calendar discovery-call booking
+      fb('Schedule', { content_name: where });
+      gtag('event', 'generate_lead', Object.assign({ method: 'booking' }, base));
+    } else if (/^(mailto:|tel:)/.test(href)) {    // email / phone
+      var m = href.indexOf('mailto:') === 0 ? 'email' : 'phone';
+      fb('Contact', { content_name: m });
+      gtag('event', 'generate_lead', Object.assign({ method: m }, base));
+    }
+  });
 
   // Track discovery-call booking clicks (Google Calendar booking page).
   document.addEventListener('click', function (e) {

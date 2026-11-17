@@ -1,59 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.mowazefai.com/ai-voice-agent</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/ai-voice-agent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/ai-voice-agent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/ai-voice-agent"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mowazefai.com/clinic-chatbot</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/clinic-chatbot"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/clinic-chatbot"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/clinic-chatbot"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mowazefai.com/en/ai-voice-agent</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/ai-voice-agent"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/ai-voice-agent"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/ai-voice-agent"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mowazefai.com/en/clinic-chatbot</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/clinic-chatbot"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/clinic-chatbot"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/clinic-chatbot"/>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
     <loc>https://www.mowazefai.com/en</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/en/privacy</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/privacy"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/en/services/automation</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/services/automation"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/services/automation"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/services/automation"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/en/services/chatbot</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/services/chatbot"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/services/chatbot"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/services/chatbot"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mowazefai.com/en/whatsapp-chatbot-jordan</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/whatsapp-chatbot-jordan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/whatsapp-chatbot-jordan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/whatsapp-chatbot-jordan"/>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/privacy</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/privacy"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/privacy"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/privacy"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/services/automation</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/services/automation"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/services/automation"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/services/automation"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.mowazefai.com/services/chatbot</loc>
     <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/services/chatbot"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/services/chatbot"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/services/chatbot"/>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://www.mowazefai.com/whatsapp-chatbot-jordan</loc>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.mowazefai.com/whatsapp-chatbot-jordan"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.mowazefai.com/en/whatsapp-chatbot-jordan"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.mowazefai.com/whatsapp-chatbot-jordan"/>
+    <lastmod>2026-11-17</lastmod>
   </url>
 </urlset>

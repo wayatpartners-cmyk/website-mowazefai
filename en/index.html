@@ -33,6 +33,8 @@
 
 <script>(function(){var d=document.documentElement;d.classList.add("js");try{if(!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){sessionStorage.setItem("intro","1");d.classList.add("intro-on")}}catch(e){}})();</script>
 
+<meta name="ga-id" content="">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap" onload="this.onload=null;this.rel='stylesheet'">
@@ -46,24 +48,24 @@
 --header-h: 72px;
 --ease: cubic-bezier(.16, 1, .3, 1);
 
---paper: #0A1626;
---paper-2: #0C1828;
---white: rgba(255, 255, 255, .035);
---ink: #07111E;
---ink-2: rgba(255, 255, 255, .03);
---ink-3: #13243A;
---text: #EAF4FA;
---muted: #9CB6C7;
---faint: #6F8A9E;
---line: rgba(140, 200, 255, .13);
---line-strong: rgba(140, 200, 255, .28);
---brass: #3AA8FF;
---brass-soft: #7CCBFF;
---accent: #1E9BFF;
---accent-hover: #47B0FF;
---ok: #34D399;
---radius: 22px;
-color-scheme: dark;
+--paper: #F6F3EE;
+--paper-2: #EFEBE4;
+--white: #FFFFFF;
+--ink: #16140F;
+--ink-2: #1F1C17;
+--ink-3: #2B2721;
+--text: #16140F;
+--muted: #5C564D;
+--faint: #8A8378;
+--line: rgba(22, 20, 15, .12);
+--line-strong: rgba(22, 20, 15, .26);
+--brass: #9A7B4F;
+--brass-soft: #B8976A;
+--accent: #16140F;
+--accent-hover: #34302A;
+--ok: #2F7D5B;
+--radius: 18px;
+color-scheme: light;
 }
 @media (min-width: 640px) { :root { --gutter: 32px; } }
 @media (min-width: 1024px) { :root { --gutter: 56px; --header-h: 84px; } }
@@ -553,8 +555,68 @@ html.js .section-head[data-reveal] .h2 { filter: blur(10px); transition: filter 
 html.js .section-head[data-reveal].is-in .h2 { filter: none; }
 html.js .cta-band[data-reveal] { clip-path: inset(12% 6% 12% 6% round 28px); transition: opacity 1s var(--ease), transform 1s var(--ease), clip-path 1.2s var(--ease); }
 html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
-}</style>
-<script src="/assets/js/site.js?v=202611161632" defer></script>
+}
+.hero::before, .hero::after, .cta-band::after { display: none; }
+.eyebrow { color: var(--muted); }
+.eyebrow::before { background: var(--brass); }
+.btn-primary { background: var(--accent); color: #F6F3EE; box-shadow: none; }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-ghost { background: transparent; }
+.btn-link { display: inline-flex; align-items: center; min-height: 52px; padding-inline: 6px; color: var(--text); text-decoration: underline; text-decoration-color: var(--brass); text-underline-offset: 7px; text-decoration-thickness: 1px; font-weight: 500; }
+.btn-link:hover { text-decoration-color: currentColor; }
+.site-header.is-scrolled { background: rgba(246, 243, 238, .88); }
+.plan, .related a, .card { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.plan { background: var(--white); }
+.plan--feat { background: var(--ink); color: #F2EFE8; border-color: var(--ink); --text: #F2EFE8; --muted: #B5AFA4; --line: rgba(242, 239, 232, .14); --line-strong: rgba(242, 239, 232, .3); }
+.plan--feat .btn-primary { background: #F2EFE8; color: var(--ink); }
+.plan-tag { background: var(--brass); }
+.int-cat, .use, .crm-card { background: var(--white); }
+.int-cat h3 svg { background: var(--paper-2); color: var(--brass); }
+.int-cat--api { background: var(--paper-2); border-color: var(--line-strong); }
+.section--tint { background: var(--paper-2); }
+.section--white { background: var(--white); }
+.section--ink { --text: #F2EFE8; --muted: #B5AFA4; --faint: #8F897E; color: #F2EFE8; }
+.section--ink .eyebrow { color: #B5AFA4; }
+.cta-band { background: var(--ink); border: 0; color: #F2EFE8; --text: #F2EFE8; --muted: #B5AFA4; --line-strong: rgba(242, 239, 232, .3); }
+.cta-band .btn-primary { background: #F2EFE8; color: var(--ink); }
+.cta-band .btn-ghost { color: #F2EFE8; border-color: rgba(242, 239, 232, .3); }
+.hero--story { padding-block: clamp(40px, 7vw, 96px) clamp(72px, 9vw, 128px); }
+.story-hero { display: grid; gap: 48px; align-items: end; }
+@media (min-width: 960px) { .story-hero { grid-template-columns: 1.35fr .8fr; gap: clamp(48px, 7vw, 112px); } }
+.hero-kicker { font-size: .95rem; color: var(--muted); margin-block-end: 28px; display: flex; gap: 10px; align-items: center; }
+.hero-kicker::before { content: ""; width: 36px; height: 1px; background: var(--brass); flex: none; }
+.hero-kicker span { color: var(--brass); }
+.hero--story .hero-title { font-size: clamp(2.4rem, 5.6vw, 4.6rem); font-weight: 600; line-height: 1.22; letter-spacing: -.02em; max-width: 15ch; }
+.hero--story .hero-title em { all: unset; }
+.hero--story .hero-sub { max-width: 52ch; color: var(--muted); font-weight: 400; line-height: 1.95; }
+.portrait { margin: 0; }
+.portrait img, .portrait-ph { width: 100%; aspect-ratio: 9 / 11; object-fit: cover; border-radius: 4px; }
+.portrait-ph { display: grid; place-content: center; justify-items: center; gap: 10px; background: linear-gradient(180deg, #E7E1D7, #D9D1C4); color: #8A8378; }
+.portrait-ph span { font-size: 6rem; line-height: 1; font-weight: 300; color: #A99F90; }
+.portrait-ph small { font-size: .85rem; }
+.portrait figcaption { display: grid; gap: 4px; padding-block-start: 16px; margin-block-start: 16px; border-block-start: 1px solid var(--line-strong); font-size: .92rem; }
+.portrait figcaption b { font-weight: 600; }
+.portrait figcaption span { color: var(--muted); }
+.story { display: grid; gap: 56px; }
+@media (min-width: 1024px) { .story { grid-template-columns: .9fr 1.4fr; gap: 96px; align-items: start; } .story-head { position: sticky; top: calc(var(--header-h) + 40px); } }
+.story-head .h2 { font-weight: 600; letter-spacing: -.015em; }
+.story-steps { display: grid; border-block-start: 1px solid var(--line); }
+.story-steps li { display: grid; grid-template-columns: auto 1fr; column-gap: 28px; row-gap: 10px; padding-block: 36px; border-block-end: 1px solid var(--line); }
+.story-n { grid-row: span 2; font-family: "Manrope", var(--font); font-size: .9rem; color: var(--brass-soft); padding-block-start: 8px; letter-spacing: .08em; }
+.story-steps h3 { font-size: clamp(1.25rem, 2vw, 1.55rem); font-weight: 500; }
+.story-steps p { color: var(--muted); font-weight: 300; max-width: 60ch; }
+html.intro-on .intro { background: var(--paper); }
+.intro-m path { stroke: var(--ink); filter: none; }
+.intro-m path + path { stroke: var(--brass); }
+.intro-word { color: var(--ink); }
+.intro-word b { color: var(--brass); }
+@keyframes mfill { to { fill: #16140F; stroke: #16140F; } }
+.intro-m path + path { animation-name: draw, mfillBrass; }
+@keyframes mfillBrass { to { fill: #9A7B4F; stroke: #9A7B4F; } }
+@media (max-width: 959px) { .portrait { display: grid; grid-template-columns: 112px 1fr; gap: 18px; align-items: center; } .portrait img, .portrait-ph { aspect-ratio: 1; border-radius: 50%; } .portrait-ph span { font-size: 2.6rem; } .portrait-ph small { display: none; } .portrait figcaption { margin: 0; padding: 0; border: 0; } }
+.portrait-ph { display: none; }
+.portrait figcaption { border-inline-start: 2px solid var(--brass); padding-inline-start: 18px; }</style>
+<script src="/assets/js/site.js?v=202611171312" defer></script>
 </head>
 <body>
 <div class="intro" aria-hidden="true"><div class="intro-in"><svg class="intro-m" viewBox="-6 -6 394 371"><path pathLength="1" d="M19 0L191 188L364 0V334H382V359H299V334H316V122L191 257L67 122V334H84V359H0V334H19Z"/><path pathLength="1" d="M191 281L229 319L191 357L153 319Z"/></svg><span class="intro-word">MOWAZEF<b>AI</b></span></div></div>
@@ -564,7 +626,7 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
     <a class="logo" href="/en" aria-label="Mowazef AI — AI chatbots and voice agents"><svg aria-hidden="true"><use href="/assets/img/icons.svg#m-mark"/></svg><span>Mowazef <span class="logo-ai">AI</span></span></a>
     <nav class="nav-links" aria-label="Main">
       <a href="/en#services" data-nav="services">Services</a>
-      <a href="/en#usecases" data-nav="usecases">What it does</a>
+      <a href="/en#story" data-nav="story">Story</a>
       <a href="/en#stack" data-nav="stack">Integrations</a>
       <a href="/en#plans" data-nav="plans">Packages</a>
       <a href="/en#faq" data-nav="faq">FAQ</a>
@@ -581,7 +643,7 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
 </header>
 <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile">
   <a href="/en#services">Services</a>
-  <a href="/en#usecases">What it does</a>
+  <a href="/en#story">Story</a>
   <a href="/en#stack">Integrations</a>
   <a href="/en#plans">Packages</a>
   <a href="/en#faq">FAQ</a>
@@ -589,65 +651,54 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
 </nav>
 <main id="main">
 
-<section class="hero">
-  <div class="container hero-grid">
+<!-- ============ HERO (story-first) ============ -->
+<section class="hero hero--story">
+  <div class="container story-hero">
     <div class="hero-copy">
-      <p class="hero-badge" data-hero><b>Amman</b> AI chatbots · CRM integrations · Automation</p>
-      <h1 class="hero-title" data-hero style="--d:.08s">A chatbot built around your business, <em>wired into your CRM.</em></h1>
-      <p class="hero-sub" data-hero style="--d:.16s">Not an off-the-shelf bot with canned replies. For every client we build a digital employee trained on their services, prices and workflow. It answers on WhatsApp, Instagram, Messenger, your website and even phone calls 24/7, and writes every lead, order and booking straight into your system.</p>
+      <p class="hero-kicker" data-hero>Aya Al-Zaboun <span aria-hidden="true">—</span> founder of Mowazef AI, Amman</p>
+      <h1 class="hero-title" data-hero style="--d:.08s">No customer should wait until morning for a reply.</h1>
+      <p class="hero-sub" data-hero style="--d:.16s">I come from nursing and health informatics, and I've seen from the inside how one unanswered message or missed call means a person goes somewhere else. Today I build each business a digital employee made for it: it answers on WhatsApp, Instagram and the phone, in Arabic and English, and logs every customer in your system.</p>
       <div class="btn-row" data-hero style="--d:.24s">
-        <a class="btn btn-primary" href="https://calendar.app.google/QCg3ed2EMQw46RcA7" data-book="hero" target="_blank" rel="noopener">Book a discovery call <svg class="flip" aria-hidden="true"><use href="/assets/img/icons.svg#arrow"/></svg></a>
-        <a class="btn btn-ghost" href="#usecases">See what it can do</a>
-      </div>
-      <div class="hero-proof" data-hero style="--d:.32s">
-        <div><b>24/7</b><span>Instant replies in Arabic &amp; English</span></div>
-        <div><b><span data-count="100">100</span>%</b><span>Custom to your data and rules</span></div>
-        <div><b>CRM</b><span>Every chat becomes a lead or order</span></div>
-        <div><b>1</b><span>Inbox for every channel</span></div>
+        <a class="btn btn-primary" href="https://calendar.app.google/QCg3ed2EMQw46RcA7" data-book="hero" target="_blank" rel="noopener">Book a call with me <svg class="flip" aria-hidden="true"><use href="/assets/img/icons.svg#arrow"/></svg></a>
+        <a class="btn btn-link" href="#story">Read the story</a>
       </div>
     </div>
 
-    <div class="visual">
-      <div class="flow" role="img" aria-label="Diagram: messages arrive from WhatsApp, Instagram, Messenger and your website; Mowazef AI, trained on your business data, understands and replies, then logs the outcome in your CRM as a lead, booking, order or support ticket">
-        <div class="flow-in" aria-hidden="true">
-          <p class="flow-h">CHANNELS</p>
-          <div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#whatsapp"/></svg> WhatsApp</div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#instagram"/></svg> Instagram</div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#messenger"/></svg> Messenger</div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#browser"/></svg> Website</div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#phone"/></svg> Phone calls</div>
-          </div>
-        </div>
-        <div class="core" aria-hidden="true">
-          <div class="core-logo"><svg aria-hidden="true"><use href="/assets/img/icons.svg#m-mark"/></svg></div>
-          <p class="core-t">Mowazef AI</p>
-          <p class="core-s">Trained on your business</p>
-          <div class="core-chips"><span>Knowledge</span><span>Rules</span><span>Memory</span><span>Handoff</span></div>
-        </div>
-        <div class="flow-out" aria-hidden="true">
-          <p class="flow-h">YOUR CRM</p>
-          <div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#users"/></svg> New lead <b>✓</b></div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#calendar"/></svg> Booking <b>✓</b></div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#store"/></svg> New order <b>✓</b></div>
-            <div class="node"><svg aria-hidden="true"><use href="/assets/img/icons.svg#file"/></svg> Support ticket <b>✓</b></div>
-          </div>
-        </div>
-      </div>
-      <p class="flow-note">Illustrative example</p>
-    </div>
+    <!-- Photo: put it at assets/img/aya.jpg (portrait, about 900x1100) and replace div.portrait-ph with:
+         <img src="/assets/img/aya.jpg" alt="Aya Al-Zaboun, founder of Mowazef AI" width="900" height="1100"> -->
+    <figure class="portrait" data-hero style="--d:.2s">
+      <div class="portrait-ph" aria-hidden="true"><span>A</span><small>Aya's photo here</small></div>
+      <figcaption><b>Aya Al-Zaboun</b><span>I work on every project myself, from the first call to the last tweak.</span></figcaption>
+    </figure>
   </div>
 </section>
 
-<div class="strip">
-  <div class="container strip-inner">
-    <p class="strip-label">We connect with:</p>
-    <ul class="int-list">
-      <li>HubSpot</li><li>Zoho CRM</li><li>Salesforce</li><li>Odoo</li><li>Pipedrive</li><li>Google Sheets</li><li>Shopify</li><li>WooCommerce</li><li>Google Calendar</li>
-    </ul>
+<!-- ============ STORY ============ -->
+<section class="section section--ink" id="story">
+  <div class="container story">
+    <div class="story-head">
+      <p class="eyebrow">The story</p>
+      <h2 class="h2">It started in a waiting room, not behind a screen.</h2>
+    </div>
+    <ol class="story-steps">
+      <li>
+        <span class="story-n">01</span>
+        <h3>Nursing taught me what a reply is worth</h3>
+        <p>The hardest part for anyone is the waiting: they have a question, they need an answer, and nobody responds. Your customer feels exactly that when they message you at 11 at night.</p>
+      </li>
+      <li>
+        <span class="story-n">02</span>
+        <h3>Health informatics showed me where things get lost</h3>
+        <p>Data scattered across WhatsApp, paper and spreadsheets, forgotten appointments, customers nobody followed up with. The problem isn't the people. It's that no system holds it all together.</p>
+      </li>
+      <li>
+        <span class="story-n">03</span>
+        <h3>So I built Mowazef AI</h3>
+        <p>A digital employee that replies quickly and kindly, knows your services and prices, and records every customer, order and booking in the right place. When a question is bigger than it, it hands over to a person on your team.</p>
+      </li>
+    </ol>
   </div>
-</div>
+</section>
 
 <section class="section" id="services">
   <div class="container">
@@ -671,14 +722,14 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
         <h3>CRM &amp; system integrations<small>HubSpot, Zoho, Odoo, Salesforce and more</small></h3>
         <div><p>Every conversation is written to your system automatically: a new lead, a deal stage update, an order, a booking or a ticket. No copy-paste, no data lost between channels.</p><div class="tags"><span>API</span><span>Webhooks</span><span>Real-time sync</span></div></div>
         <span class="svc-go"><svg class="flip" aria-hidden="true"><use href="/assets/img/icons.svg#arrow"/></svg></span>
-        <a class="cover" href="#integrations" aria-label="CRM integration details"></a>
+        <a class="cover" href="#stack" aria-label="CRM integration details"></a>
       </article>
       <article class="svc">
         <span class="svc-num">03</span>
         <h3>Voice agent for calls<small>Answers and calls in natural Arabic</small></h3>
         <div><p>The same intelligence on the phone: answers inbound calls, calls customers for follow-ups and reminders, books and logs, and automatically calls back missed calls.</p><div class="tags"><span>Inbound &amp; outbound</span><span>Arabic dialects</span><span>Callbacks</span></div></div>
         <span class="svc-go"><svg class="flip" aria-hidden="true"><use href="/assets/img/icons.svg#arrow"/></svg></span>
-        <a class="cover" href="#usecases" aria-label="Voice agent details"></a>
+        <a class="cover" href="/en/ai-voice-agent" aria-label="Voice agent details"></a>
       </article>
       <article class="svc">
         <span class="svc-num">04</span>
@@ -691,46 +742,16 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
   </div>
 </section>
 
-<section class="section section--tint" id="usecases">
+<section class="section section--tint" id="solutions">
   <div class="container">
-    <div class="section-head section-head--split">
-      <div>
-        <p class="eyebrow">What it can do</p>
-        <h2 class="h2">It runs the whole operation, not just the reply.</h2>
-      </div>
-      <p class="lead">Mowazef AI understands what the customer wants, pulls live data from your systems, executes the action inside the conversation, and follows up afterwards. In chat or on a call.</p>
+    <div class="section-head">
+      <p class="eyebrow">Solutions by need</p>
+      <h2 class="h2">Start where your customers slip away.</h2>
     </div>
-    <div class="uses">
-      <article class="use">
-        <div class="use-ui" aria-hidden="true"><span class="ok">Resolved</span><span>New ticket</span><span class="ok">Resolved</span><span class="blue">Follow-up sent</span></div>
-        <h3>Customer support</h3>
-        <p>Handles hundreds of enquiries at once: order status, account updates, issues and complaints. Resolves what it can, and opens a ticket or hands over to a human for the rest.</p>
-      </article>
-      <article class="use">
-        <div class="use-ui" aria-hidden="true"><span>1,200 leads</span><span class="blue">Auto-qualified</span><span class="ok">Meeting booked</span></div>
-        <h3>Sales &amp; lead qualification</h3>
-        <p>Asks the right questions, scores intent, sends the quote and books a meeting with your sales team. Qualified leads land straight in your CRM.</p>
-      </article>
-      <article class="use">
-        <div class="use-ui" aria-hidden="true"><span class="blue">Reminder sent</span><span>Rescheduled</span><span class="ok">Booking confirmed</span></div>
-        <h3>Bookings &amp; appointments</h3>
-        <p>Book, confirm, reschedule, cancel and remind. All connected to your calendar and internal systems, so no-shows drop and no slot is lost.</p>
-      </article>
-      <article class="use">
-        <div class="use-ui" aria-hidden="true"><span>Order #2041</span><span class="blue">Out for delivery</span><span class="ok">Delivered</span></div>
-        <h3>Orders &amp; tracking</h3>
-        <p>Takes the full order in conversation, confirms details, records it in your store or system, and answers "where's my order?" with the real status.</p>
-      </article>
-      <article class="use">
-        <div class="use-ui" aria-hidden="true"><span>Invoice due</span><span class="blue">Auto reminder</span><span class="ok">Payment link sent</span></div>
-        <h3>Collections &amp; payment reminders</h3>
-        <p>Polite, respectful payment reminders, a direct payment link and recorded payment commitments, with sensitive cases routed to your team.</p>
-      </article>
-      <article class="use">
-        <div class="use-ui" aria-hidden="true"><span>Inactive 6 months</span><span class="blue">Tailored offer</span><span class="ok">Purchased again</span></div>
-        <h3>Win-back &amp; renewals</h3>
-        <p>Follow-up campaigns for past customers and cold deals, renewal reminders and behaviour-based offers, with interested replies routed straight to sales.</p>
-      </article>
+    <div class="related">
+      <a href="/en/whatsapp-chatbot-jordan"><strong>WhatsApp chatbot for businesses in Jordan</strong><span>Instant WhatsApp replies, lead qualification and CRM logging.</span></a>
+      <a href="/en/clinic-chatbot"><strong>Clinic chatbot for appointment booking</strong><span>Book, reschedule and remind on WhatsApp and Instagram.</span></a>
+      <a href="/en/ai-voice-agent"><strong>AI voice agent to answer calls</strong><span>Answers the phone in Arabic, books, and logs every call.</span></a>
     </div>
   </div>
 </section>
@@ -753,33 +774,6 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
       <div class="int-cat"><h3><svg aria-hidden="true"><use href="/assets/img/icons.svg#layers"/></svg> Data &amp; reporting</h3><ul><li>Google Sheets</li><li>Airtable</li><li>Notion</li><li>Supabase</li></ul></div>
       <div class="int-cat"><h3><svg aria-hidden="true"><use href="/assets/img/icons.svg#bolt"/></svg> Alerts &amp; teams</h3><ul><li>Slack</li><li>Telegram</li><li>Email</li><li>SMS</li></ul></div>
       <div class="int-cat int-cat--api"><h3><svg aria-hidden="true"><use href="/assets/img/icons.svg#plug"/></svg> Anything else</h3><ul><li>REST API</li><li>Webhooks</li><li>n8n</li><li>Internal systems</li></ul></div>
-    </div>
-  </div>
-</section>
-
-<section class="section section--ink" id="integrations">
-  <div class="container seo-grid">
-    <div>
-      <p class="eyebrow">Customization &amp; integrations</p>
-      <h2 class="h2">Everything about the bot is tailored to you.</h2>
-      <p class="lead">From tone of voice to the last CRM field. The bot follows your rules and writes to the place your team already works from.</p>
-      <ul class="seo-list">
-        <li><svg aria-hidden="true"><use href="/assets/img/icons.svg#layers"/></svg><div><b>Your own knowledge base</b><span>Services, prices, policies and FAQs. The bot doesn't make answers up.</span></div></li>
-        <li><svg aria-hidden="true"><use href="/assets/img/icons.svg#chat"/></svg><div><b>Persona &amp; dialect</b><span>Jordanian, Gulf, Modern Standard or English; formal or friendly.</span></div></li>
-        <li><svg aria-hidden="true"><use href="/assets/img/icons.svg#shield"/></svg><div><b>Rules &amp; guardrails</b><span>What to say, when to quote a price, and when to hand over to a human.</span></div></li>
-        <li><svg aria-hidden="true"><use href="/assets/img/icons.svg#plug"/></svg><div><b>CRM connection</b><span>Custom fields, deal stages, automatic owner assignment.</span></div></li>
-        <li><svg aria-hidden="true"><use href="/assets/img/icons.svg#refresh"/></svg><div><b>Automatic follow-ups</b><span>Messages to silent leads, reminders and behaviour-based offers.</span></div></li>
-        <li><svg aria-hidden="true"><use href="/assets/img/icons.svg#gauge"/></svg><div><b>Reporting dashboard</b><span>Conversations, leads, conversion rates and top questions.</span></div></li>
-      </ul>
-    </div>
-    <div class="crm-card" aria-hidden="true">
-      <div class="crm-head"><b>CRM · Leads</b><span>Live</span></div>
-      <div class="crm-row"><div><b>Ahmad K.</b><span>WhatsApp · 3-bed apartment, Abdoun</span></div><em>Qualified</em></div>
-      <div class="crm-row"><div><b>Sara M.</b><span>Instagram · Design course, evening</span></div><em>Enrolled</em></div>
-      <div class="crm-row"><div><b>Omar R.</b><span>Website · Order #2041</span></div><em>New order</em></div>
-      <div class="crm-row"><div><b>Layla A.</b><span>Messenger · AC repair</span></div><em>Ticket open</em></div>
-      <div class="crm-foot"><span>Synced automatically from conversations</span><b>+4</b></div>
-      <small>Illustrative example; names are fictional.</small>
     </div>
   </div>
 </section>
@@ -847,25 +841,6 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
   </div>
 </section>
 
-<section class="section" id="why">
-  <div class="container why">
-    <div class="founder">
-      <p class="eyebrow">Why Mowazef AI</p>
-      <blockquote>Every business works differently. That's why we don't sell a ready-made bot; we build a digital employee that works your way.</blockquote>
-      <div class="founder-by">
-        <span class="founder-mono" aria-hidden="true">A</span>
-        <div><b>Aya Al-Zboun</b><span>Founder, Mowazef AI</span></div>
-      </div>
-    </div>
-    <div class="why-list">
-      <div class="why-item"><svg aria-hidden="true"><use href="/assets/img/icons.svg#layers"/></svg><div><h3>Real customization</h3><p>Every bot is built from scratch on your data and rules, not a template with your name swapped in.</p></div></div>
-      <div class="why-item"><svg aria-hidden="true"><use href="/assets/img/icons.svg#plug"/></svg><div><h3>Connected to your system</h3><p>The bot writes to the CRM your team already uses, so nothing gets lost or re-typed.</p></div></div>
-      <div class="why-item"><svg aria-hidden="true"><use href="/assets/img/icons.svg#chat"/></svg><div><h3>Speaks your customers' language</h3><p>Regional Arabic dialects and English, in a tone that fits your brand.</p></div></div>
-      <div class="why-item"><svg aria-hidden="true"><use href="/assets/img/icons.svg#users"/></svg><div><h3>A local team in Amman</h3><p>We know the Jordanian and Gulf markets, and reply directly on WhatsApp.</p></div></div>
-    </div>
-  </div>
-</section>
-
 <section class="section section--white" id="faq">
   <div class="container faq-wrap">
     <div class="section-head">
@@ -886,13 +861,13 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
 
 <section class="container">
   <div class="cta-band">
-    <h2>Ready for an employee who never sleeps?</h2>
-    <p>Book a free discovery call and we'll map the right bot and integrations for your business, with a clear quote.</p>
+    <h2>Tell me about your business, and I'll tell you what we can fix.</h2>
+    <p>Thirty minutes on Google Meet, directly with me. We'll find where messages and customers slip through, and you'll leave with a clear plan and a quote, no commitment.</p>
     <div class="btn-row">
-      <a class="btn btn-primary" href="https://calendar.app.google/QCg3ed2EMQw46RcA7" data-book="final-cta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/assets/img/icons.svg#calendar"/></svg> Book a discovery call</a>
-      <a class="btn btn-ghost" href="https://wa.me/96265236672?text=Hi,%20I%20have%20a%20question%20about%20Mowazef%20AI" data-wa="final-cta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/assets/img/icons.svg#whatsapp"/></svg> Or chat on WhatsApp</a>
+      <a class="btn btn-primary" href="https://calendar.app.google/QCg3ed2EMQw46RcA7" data-book="final-cta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/assets/img/icons.svg#calendar"/></svg> Book a call</a>
+      <a class="btn btn-ghost" href="https://wa.me/96265236672?text=Hi%20Aya,%20I%20have%20a%20question%20about%20Mowazef%20AI" data-wa="final-cta" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="/assets/img/icons.svg#whatsapp"/></svg> Or message me on WhatsApp</a>
     </div>
-    <small>Pick a time that suits you and get a Google Meet link by email instantly.</small>
+    <small>Pick a time that suits you and get the meeting link by email instantly.</small>
   </div>
 </section>
 
@@ -919,6 +894,7 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
         <a class="logo" href="/en"><svg aria-hidden="true"><use href="/assets/img/icons.svg#m-mark"/></svg><span>Mowazef <span class="logo-ai">AI</span></span></a>
         <p>We build custom AI chatbots and voice agents for every business, connected to your CRM and systems, with workflow automation. From Amman to Jordan and the Gulf.</p>
         <div class="social">
+          <a href="https://www.instagram.com/mowazef.ai/" target="_blank" rel="noopener" aria-label="Instagram @mowazef.ai"><svg aria-hidden="true"><use href="/assets/img/icons.svg#instagram"/></svg></a>
           <a href="https://www.linkedin.com/in/aya-al-zboun/" target="_blank" rel="noopener" aria-label="Aya Al-Zboun on LinkedIn"><svg aria-hidden="true"><use href="/assets/img/icons.svg#linkedin"/></svg></a>
         </div>
         <!-- To add Instagram or Facebook: copy the <a> line above with the real URL. Never leave an <a> without href. -->
@@ -927,7 +903,9 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
         <p class="footer-h">Services</p>
         <ul>
           <li><a href="/en/services/chatbot">Custom chatbot</a></li>
-          <li><a href="/en#usecases">Voice agent</a></li>
+          <li><a href="/en/whatsapp-chatbot-jordan">WhatsApp chatbot for businesses</a></li>
+          <li><a href="/en/clinic-chatbot">Clinic chatbot</a></li>
+          <li><a href="/en/ai-voice-agent">AI voice agent</a></li>
           <li><a href="/en#stack">CRM integrations</a></li>
           <li><a href="/en/services/automation">Workflow automation</a></li>
         </ul>
@@ -935,7 +913,7 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
       <div class="footer-col">
         <p class="footer-h">Company</p>
         <ul>
-          <li><a href="/en#usecases">What it does</a></li>
+          <li><a href="/en#story">Our story</a></li>
           <li><a href="/en#process">How we work</a></li>
           <li><a href="/en#faq">FAQ</a></li>
           <li><a href="/en/privacy">Privacy policy</a></li>
@@ -983,13 +961,13 @@ html.js .cta-band[data-reveal].is-in { clip-path: inset(0 0 0 0 round 28px); }
   "description": "Custom AI chatbots and voice agents with CRM integrations and workflow automation, based in Amman, Jordan.",
   "email": "info@mowazefai.com",
   "telephone": "+96265236672",
-  "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressCountry": "JO" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Amman", "addressRegion": "Amman Governorate", "addressCountry": "JO" },
   "areaServed": [{ "@type": "Country", "name": "Jordan" }, { "@type": "City", "name": "Amman" }, { "@type": "Country", "name": "United Arab Emirates" }, { "@type": "Country", "name": "Saudi Arabia" }],
   "priceRange": "$$",
   "knowsAbout": ["AI chatbots", "AI voice agents", "CRM integration", "WhatsApp chatbots", "Business automation"],
   "founder": { "@type": "Person", "name": "Aya Al-Zboun", "alternateName": "آية الزبون" },
   "knowsLanguage": ["ar", "en"],
-  "sameAs": ["https://www.linkedin.com/in/aya-al-zboun/"]
+  "sameAs": ["https://www.instagram.com/mowazef.ai/", "https://www.linkedin.com/in/aya-al-zboun/"]
 }
 </script>
 </body>

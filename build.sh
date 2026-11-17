@@ -24,6 +24,8 @@ PHONE_DISPLAY="+962 6 523 6672"
 PHONE_TEL="+96265236672"
 EMAIL="info@mowazefai.com"
 BOOKING_URL="https://calendar.app.google/QCg3ed2EMQw46RcA7"   # Google Calendar booking page (discovery call)
+META_PIXEL_ID=""   # Meta Pixel ID (digits only). Empty = Pixel not loaded at all.
+GA_ID=""           # Google Analytics 4 Measurement ID (G-XXXXXXX). Empty = GA not loaded.
 VERSION="$(date +%Y%m%d%H%M)"
 # Inlined into every page so the stylesheet never blocks first paint (comments and indentation stripped).
 CSS="$(perl -0pe 's|/\*.*?\*/||gs; s/^[ \t]+//mg; s/\n{2,}/\n/g' assets/css/site.css)"
@@ -98,6 +100,11 @@ $(cat "src/partials/footer.$lang.html")"
   sub page '{{SITE}}' "$SITE"
   sub page '{{EMAIL}}' "$EMAIL"
   sub page '{{BOOKING}}' "$BOOKING_URL"
+  if [[ "$META_PIXEL_ID" =~ ^[0-9]{10,20}$ ]]; then
+    PIXEL_HEAD="<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','$META_PIXEL_ID');fbq('track','PageView');</script><noscript><img height=\"1\" width=\"1\" style=\"display:none\" alt=\"\" src=\"https://www.facebook.com/tr?id=$META_PIXEL_ID&amp;ev=PageView&amp;noscript=1\"></noscript>"
+  else PIXEL_HEAD=""; fi
+  sub page '{{PIXEL_HEAD}}' "$PIXEL_HEAD"
+  sub page '{{GA_ID}}' "$GA_ID"
   sub page '{{PHONE_DISPLAY}}' "$PHONE_DISPLAY"
   sub page '{{PHONE_TEL}}' "$PHONE_TEL"
   sub page '{{VERSION}}' "$VERSION"
