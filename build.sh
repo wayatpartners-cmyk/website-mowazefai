@@ -24,7 +24,7 @@ PHONE_DISPLAY="+962 6 523 6672"
 PHONE_TEL="+96265236672"
 EMAIL="info@mowazefai.com"
 BOOKING_URL="https://calendar.app.google/QCg3ed2EMQw46RcA7"   # Google Calendar booking page (discovery call)
-META_PIXEL_ID=""   # Meta Pixel ID (digits only). Empty = Pixel not loaded at all.
+META_PIXEL_ID="1147993700942138"   # Meta Pixel ID (digits only). Empty = Pixel not loaded at all.
 GA_ID=""           # Google Analytics 4 Measurement ID (G-XXXXXXX). Empty = GA not loaded.
 VERSION="$(date +%Y%m%d%H%M)"
 # Inlined into every page so the stylesheet never blocks first paint (comments and indentation stripped).
